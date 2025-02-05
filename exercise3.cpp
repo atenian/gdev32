@@ -2499,6 +2499,10 @@ int main(int argc, char** argv)
             if (glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
                 eyePosition += glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
 
+            eyePosition.x = std::max(-5.0f, std::min(3.0f, eyePosition.x));
+            eyePosition.y = std::max(-1.0f, std::min(3.0f, eyePosition.y));
+            eyePosition.z = std::max(-1.0f, std::min(7.5f, eyePosition.z));
+
             render();
 
             // swap the GLFW front and back buffers to show the next frame
