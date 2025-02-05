@@ -33,13 +33,74 @@ bool switchCheck, onRight = true;
 float backgroundVertices[] =
 {
     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
-    -1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    // back/main background of the cube
+    // Triangle 1
+    0.0f, 1.0f, 0.0f, 0.8f, 0.8f, 0.8f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, 0.0f, 0.8f, 0.8f, 0.8f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    1.0f, 0.0f, 0.0f, 0.8f, 0.8f, 0.8f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
-    1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.0f, 1.0f, 0.0f, 0.8f, 0.8f, 0.8f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    1.0f, 0.0f, 0.0f, 0.8f, 0.8f, 0.8f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    1.0f, 1.0f, 0.0f, 0.8f, 0.8f, 0.8f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+};
+
+float backgroundVertices2[] =
+{
+    // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
+    // Bottom of the cube
+    // Triangle 1
+    0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+    1.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+
+    // Triangle 2
+    0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+    1.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+    1.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+
+    // Top of the cube
+    // Triangle 1
+    0.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+    1.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+    0.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+
+    // Triangle 2
+    0.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+    1.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f,
+    1.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+
+    // Back of the cube
+    // Triangle 1
+    0.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    1.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+    0.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+
+    // Triangle 2
+    0.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    1.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    1.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+
+    // Left of the cube
+    // Triangle 1
+    0.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+    0.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+
+    // Triangle 2
+    0.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    0.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+    0.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+
+    // Right of the cube
+    // Triangle 1
+    1.0f, 1.0f, 0.0f, 0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+    1.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+    1.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+
+    // Triangle 2
+    1.0f, 0.0f, 2.0f, 0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    1.0f, 1.0f, 2.0f, 0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+    1.0f, 0.0f, 0.0f, 0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
 };
 
 //Main Platform Vertices
@@ -1452,6 +1513,8 @@ GLuint vao2;        // vao for first platform
 GLuint vao3;        // vao for second platform
 GLuint vao4;        // vao for third platform
 GLuint vao5;        // vao for fourth platform
+GLuint vao6;        // vao for background
+GLuint vao7;        // vao for background clouds
 GLuint vaoKirby;
 
 // vertex buffer objects (reserve GPU memory for our vertex array)
@@ -1460,6 +1523,8 @@ GLuint vbo2;        // vbo for first platform
 GLuint vbo3;        // vbo for second platform
 GLuint vbo4;        // vbo for third platform
 GLuint vbo5;        // vbo for fourth plaform
+GLuint vbo6;        // vbo for background
+GLuint vbo7;        // vbo for background clouds
 GLuint vboKirby;
 
 // combined vertex and fragment shaders
@@ -1468,6 +1533,8 @@ GLuint shader2;     // shader for first platform
 GLuint shader3;     // shader for second platform
 GLuint shader4;     // shader for third platform
 GLuint shader5;     // shader for fourth platform
+GLuint shader6;     // shader for background
+GLuint shader7;     // shader for background clouds
 GLuint shaderKirby;
 
 // element buffer objects
@@ -1477,6 +1544,8 @@ GLuint eboKirby;
 GLuint bgtexture;   // background texture
 GLuint texture0;    // first texture - main platform
 GLuint texture1;    // second texture - small platform
+GLuint texture2;    // third texture - background
+GLuint texture3;    // third texture - background clouds
 
 glm::vec3 eyePosition, forwardVector, upVector; // parameters of lookAt function
 
@@ -1690,7 +1759,7 @@ bool setup()
     // and also the texture coordinates
     glEnableVertexAttribArray(3);
 
-    // setup for the fourth platform
+// setup for the fourth platform
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(5, &vao5);
     glGenBuffers(5, &vbo5);
@@ -1737,12 +1806,106 @@ bool setup()
     // and also the texture coordinates
     glEnableVertexAttribArray(3);
 
+//  setup for background
+        // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
+    glGenVertexArrays(6, &vao6);
+    glGenBuffers(6, &vbo6);
+
+    // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
+    glBindVertexArray(vao6);
+
+    // upload our vertex array data to the newly-created VBO
+    glBindBuffer(GL_ARRAY_BUFFER, vbo6);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(backgroundVertices), backgroundVertices, GL_STATIC_DRAW);
+
+    // on the VAO, register the current VBO with the following vertex attribute layout:
+    // - layout location 0...
+    // - ... shall consist of 3 GL_FLOATs (corresponding to x, y, and z coordinates)
+    // - ... its values will NOT be normalized (GL_FALSE)
+    // - ... the stride length is the number of bytes of all 8 floats of each vertex (hence, 8 * sizeof(float))
+    // - ... and we start at the beginning of the array (hence, (void*) 0)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+
+    // for layout location 1, these correspond to the color values (r, g, b)
+    //  it has an offset of 3 * sizeof(float) since it is after the 3 float values from the initial vertices
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3 * sizeof(float)));
+
+    // for layout location 2, these correspond to the normal
+    //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
+    //  and the 3 float values that indicate the color
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
+
+    // for layout location 3, these correspond to the texture coordinates (s, t)
+    //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
+    //  and the 3 float values that indicate the color
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(9 * sizeof(float)));
+
+    // enable the newly-created layout location 0
+    // this shall be used by our vertex shader to draw the triangles
+    glEnableVertexAttribArray(0);
+
+    // enable the colors as well
+    glEnableVertexAttribArray(1);
+
+    // and also the normal vectors
+    glEnableVertexAttribArray(2);
+
+    // and also the texture coordinates
+    glEnableVertexAttribArray(3);
+
+//  setup for background clouds
+        // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
+    glGenVertexArrays(7, &vao7);
+    glGenBuffers(7, &vbo7);
+
+    // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
+    glBindVertexArray(vao7);
+
+    // upload our vertex array data to the newly-created VBO
+    glBindBuffer(GL_ARRAY_BUFFER, vbo7);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(backgroundVertices2), backgroundVertices2, GL_STATIC_DRAW);
+
+    // on the VAO, register the current VBO with the following vertex attribute layout:
+    // - layout location 0...
+    // - ... shall consist of 3 GL_FLOATs (corresponding to x, y, and z coordinates)
+    // - ... its values will NOT be normalized (GL_FALSE)
+    // - ... the stride length is the number of bytes of all 8 floats of each vertex (hence, 8 * sizeof(float))
+    // - ... and we start at the beginning of the array (hence, (void*) 0)
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+
+    // for layout location 1, these correspond to the color values (r, g, b)
+    //  it has an offset of 3 * sizeof(float) since it is after the 3 float values from the initial vertices
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3 * sizeof(float)));
+
+    // for layout location 2, these correspond to the normal
+    //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
+    //  and the 3 float values that indicate the color
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
+
+    // for layout location 3, these correspond to the texture coordinates (s, t)
+    //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
+    //  and the 3 float values that indicate the color
+    glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(9 * sizeof(float)));
+
+    // enable the newly-created layout location 0
+    // this shall be used by our vertex shader to draw the triangles
+    glEnableVertexAttribArray(0);
+
+    // enable the colors as well
+    glEnableVertexAttribArray(1);
+
+    // and also the normal vectors
+    glEnableVertexAttribArray(2);
+
+    // and also the texture coordinates
+    glEnableVertexAttribArray(3);
+
     // setup for kirby
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(6, &vaoKirby);
-    glGenBuffers(6, &vboKirby);
-    glGenBuffers(7, &eboKirby);
+    glGenVertexArrays(8, &vaoKirby);
+    glGenBuffers(8, &vboKirby);
+    glGenBuffers(9, &eboKirby);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vaoKirby);
@@ -1816,6 +1979,16 @@ bool setup()
     if (! shader5)
         return false;
 
+    // load our shader program for background
+    shader6 = gdevLoadShader("exercise3-6.vs", "exercise3.fs");
+    if (!shader6)
+        return false;
+
+    // load our shader program for background
+    shader7 = gdevLoadShader("exercise3-7.vs", "exercise3.fs");
+    if (!shader7)
+        return false;
+
     // load our shader program for kirby
     shaderKirby = gdevLoadShader("exercise3-kirby.vs", "exercise3.fs");
     if (! shaderKirby)
@@ -1829,6 +2002,16 @@ bool setup()
     // load second texture
     texture1 = gdevLoadTexture("way.png", GL_REPEAT, true, true);
     if (! texture1)
+        return false;
+
+    // load third texture
+    texture2 = gdevLoadTexture("FinalDestination.jpg", GL_REPEAT, true, true);
+    if (!texture2)
+        return false;
+
+    // load fourth texture
+    texture3 = gdevLoadTexture("Space.jpg", GL_REPEAT, true, true);
+    if (!texture3)
         return false;
     
     // setting camera position to (-2, 0, 3), forward vector to (0,0,-1), and up vector (0,1,0)
@@ -2049,6 +2232,76 @@ void render()
 
     // ... draw our triangles
     glBindVertexArray(vao5);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
+
+//Background
+    glUseProgram(shader6);
+
+    // ... enable cull face ...
+    glEnable(GL_CULL_FACE);
+
+    // ... enable OpenGL's hidden surface removal ...
+    glEnable(GL_DEPTH_TEST);
+
+    // ... calculate matrix for third triangle ...
+    glm::mat4 matrix6;
+    matrix6 = glm::translate(baseMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
+
+    // matrix6 = glm::rotate(matrix6, glm::radians(105.0f),
+    //         glm::vec3(0.0f, 1.0f, 0.0f));
+
+    // matrix6 = glm::rotate(matrix6, glm::radians(rotationAngle),
+    //         glm::vec3(0.0f, 0.0f, 1.0f));
+
+    matrix6 = glm::scale(matrix6, glm::vec3(8.5f, 5.0f, 1.0f));
+
+    glUniformMatrix4fv(glGetUniformLocation(shader6, "matrix6"),
+        1, GL_FALSE, glm::value_ptr(matrix6));
+
+    // ... set the active textures...
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture2);
+
+    // ... connect each texture unit to a sampler2D in the fragment shader ...
+    glUniform1i(glGetUniformLocation(shader6, "shaderTexture0"), 0);
+
+    // ... draw our triangles
+    glBindVertexArray(vao6);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
+
+//Background Clouds
+    glUseProgram(shader7);
+
+    // ... enable cull face ...
+    glEnable(GL_CULL_FACE);
+
+    // ... enable OpenGL's hidden surface removal ...
+    glEnable(GL_DEPTH_TEST);
+
+    // ... calculate matrix for third triangle ...
+    glm::mat4 matrix7;
+    matrix7 = glm::translate(baseMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
+
+    // matrix6 = glm::rotate(matrix6, glm::radians(105.0f),
+    //         glm::vec3(0.0f, 1.0f, 0.0f));
+
+    // matrix6 = glm::rotate(matrix6, glm::radians(rotationAngle),
+    //         glm::vec3(0.0f, 0.0f, 1.0f));
+
+    matrix7 = glm::scale(matrix6, glm::vec3(1.0f, 1.0f, 5.0f)); // Leave this as matrix 6
+
+    glUniformMatrix4fv(glGetUniformLocation(shader7, "matrix7"),
+        1, GL_FALSE, glm::value_ptr(matrix7));
+
+    // ... set the active textures...
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture3);
+
+    // ... connect each texture unit to a sampler2D in the fragment shader ...
+    glUniform1i(glGetUniformLocation(shader7, "shaderTexture0"), 0);
+
+    // ... draw our triangles
+    glBindVertexArray(vao7);
     glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
 
     // using our shader program for the kirby
