@@ -5,13 +5,18 @@ layout (location = 1) in vec3 vertexColor;
 layout (location = 2) in vec3 normalVector;
 layout (location = 3) in vec2 vertexTexCoord;
 
-uniform mat4 matrixbg;
+uniform mat4 matrix2;
+uniform mat3 nmatrix2;
 out vec3 shaderColor;
 out vec2 shaderTexCoord;
+out vec3 worldSpacePosition;
+out vec3 worldSpaceNormal;
 
 void main()
 {
-    gl_Position = matrixbg * vec4(vertexPosition, 1.0f);
+    gl_Position = matrix2 * vec4(vertexPosition, 1.0f);
     shaderColor = vertexColor;
     shaderTexCoord = vertexTexCoord;
+    worldSpacePosition = (matrix2 * vec4(vertexPosition, 1.0f)).xyz;
+    worldSpaceNormal = normalize(nmatrix2 * normalVector);
 }

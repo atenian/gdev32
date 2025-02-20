@@ -60,25 +60,25 @@ float backgroundVertices2[] =
 
     // Top of the cube
     // Triangle 1
-    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.66f,
-    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 1.00f,
-    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 1.00f,
+    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.66f,
+    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 1.00f,
+    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 1.00f,
 
     // Triangle 2
-    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.66f,
-    1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.66f,
-    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 1.00f,
+    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.66f,
+    1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 0.66f,
+    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 1.00f,
 
     // Back of the cube
     // Triangle 1
-    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 1.00f, 0.66f,
-    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.75f, 0.33f,
-    0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 1.00f, 0.33f,
+    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 1.00f, 0.66f,
+    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.75f, 0.33f,
+    0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 1.00f, 0.33f,
 
     // Triangle 2
-    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 1.00f, 0.66f,
-    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.75f, 0.66f,
-    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.75f, 0.33f,
+    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 1.00f, 0.66f,
+    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.75f, 0.66f,
+    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.75f, 0.33f,
 
     // Left of the cube
     // Triangle 1
@@ -93,38 +93,38 @@ float backgroundVertices2[] =
 
     // Right of the cube
     // Triangle 1
-    1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.5f, 0.66f,
-    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.5f, 0.33f,
-    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.75f, 0.66f,
+    1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.5f, 0.66f,
+    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.5f, 0.33f,
+    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.75f, 0.66f,
 
     // Triangle 2
-    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.75f, 0.33f,
-    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.75f, 0.66f,
-    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.5f, 0.33f,
+    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.75f, 0.33f,
+    1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.75f, 0.66f,
+    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.5f, 0.33f,
 };
 
-//Main Platform Vertices
-float mainPlatformVertices[] =
+//Main  Vertices
+float mainVertices[] =
 {
     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
-    // Main platform vertices
+    // Main  vertices
     // Top vertices
     // Triangle 1
-    -0.5f, 0.0f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-    0.5f,  0.0f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f,
-    -0.5f,  0.0f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+    -0.5f, 0.0f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+    0.5f,  0.0f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+    -0.5f,  0.0f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
 
     // Triangle 2
-    -0.5f, 0.0f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.5f, 1.0f,
-    0.5f,  0.0f,  -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-    0.5f,  0.0f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+    -0.5f, 0.0f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.5f, 1.0f,
+    0.5f,  0.0f,  -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+    0.5f,  0.0f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
     
 
     // Front vertices
     // Triangle 1
-    -0.5f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -0.46f,  -0.3f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+    -0.5f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    -0.46f,  -0.3f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
     // Triangle 2
     -0.4f, -0.4f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -132,14 +132,14 @@ float mainPlatformVertices[] =
     -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 3
-    -0.4f, -0.4f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -0.35f,  -0.5f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+    -0.4f, -0.4f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    -0.35f,  -0.5f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
     // Triangle 4
-    -0.35f, -0.5f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -0.3f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    -0.35f, -0.5f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.43f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    -0.3f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 5
     -0.35f, -0.5f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -147,9 +147,9 @@ float mainPlatformVertices[] =
     -0.3f,  -0.55f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 6
-    -0.27f, -0.53f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.3f,  -0.55f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -0.3f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    -0.27f, -0.53f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.3f,  -0.55f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    -0.3f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 7
     -0.27f, -0.53f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -157,9 +157,9 @@ float mainPlatformVertices[] =
     -0.2f,  -0.53f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
     
     // Triangle 8
-    -0.17f, -0.51f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.2f,  -0.53f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -0.3f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    -0.17f, -0.51f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.2f,  -0.53f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    -0.3f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 9
     -0.17f, -0.51f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -167,9 +167,9 @@ float mainPlatformVertices[] =
     -0.15f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
     
     // Triangle 10
-    -0.17f, -0.51f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.15f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    -0.1f,  -0.58f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    -0.17f, -0.51f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.15f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    -0.1f,  -0.58f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
     
     // Triangle 11
     -0.06f, -0.6f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -177,9 +177,9 @@ float mainPlatformVertices[] =
     -0.15f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 12
-    -0.06f, -0.6f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.15f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.0f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    -0.06f, -0.6f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.15f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    0.0f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 13
     -0.06f, -0.6f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -187,9 +187,9 @@ float mainPlatformVertices[] =
     -0.02f,  -0.64f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 14
-    0.05f, -0.7f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.02f,  -0.64f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.0f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    0.05f, -0.7f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.02f,  -0.64f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    0.0f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 15
     0.05f, -0.7f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -197,9 +197,9 @@ float mainPlatformVertices[] =
     0.1f,  -0.58f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 16
-    0.2f, -0.66f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.1f,  -0.58f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.0f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    0.2f, -0.66f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.1f,  -0.58f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    0.0f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 17
     0.2f, -0.66f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -207,9 +207,9 @@ float mainPlatformVertices[] =
     0.2f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 18
-    0.2f, -0.66f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.2f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.3f,  -0.5f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    0.2f, -0.66f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.2f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    0.3f,  -0.5f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 19
     0.32f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -217,9 +217,9 @@ float mainPlatformVertices[] =
     0.2f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 20
-    0.32f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.35f,  -0.36f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.3f,  -0.4f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    0.32f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.35f,  -0.36f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    0.3f,  -0.4f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 21
     0.32f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -227,15 +227,15 @@ float mainPlatformVertices[] =
     0.35f,  -0.36f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 22
-    0.32f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.5f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
-    0.4f,  -0.3f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
+    0.32f, 0.0f, -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.5f,  0.0f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+    0.4f,  -0.3f,  -0.5f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Back vertices
     // Triangle 1
-    -0.5f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.46f,  -0.3f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.43f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+    -0.5f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.46f,  -0.3f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.43f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 2
     -0.4f, -0.4f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -243,14 +243,14 @@ float mainPlatformVertices[] =
     -0.46f,  -0.3f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
     // Triangle 3
-    -0.4f, -0.4f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.35f,  -0.5f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.43f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+    -0.4f, -0.4f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.35f,  -0.5f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.43f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 4
-    -0.35f, -0.5f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 
-    -0.43f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+    -0.35f, -0.5f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
+    -0.43f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
     
     // Triangle 5
     -0.35f, -0.5f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -258,9 +258,9 @@ float mainPlatformVertices[] =
     -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 6
-    -0.27f, -0.53f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.3f,  -0.55f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    -0.27f, -0.53f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.3f,  -0.55f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 7
     -0.27f, -0.53f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -268,9 +268,9 @@ float mainPlatformVertices[] =
     -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
     
     // Triangle 8
-    -0.17f, -0.51f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.2f,  -0.53f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    -0.17f, -0.51f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.2f,  -0.53f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 9
     -0.17f, -0.51f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -278,9 +278,9 @@ float mainPlatformVertices[] =
     -0.3f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
     
     // Triangle 10
-    -0.17f, -0.51f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    -0.1f,  -0.58f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.15f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    -0.17f, -0.51f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    -0.1f,  -0.58f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.15f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
     
     // Triangle 11
     -0.06f, -0.6f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -288,9 +288,9 @@ float mainPlatformVertices[] =
     -0.1f,  -0.58f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 12
-    -0.06f, -0.6f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.15f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    -0.06f, -0.6f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.15f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 13
     -0.06f, -0.6f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -298,9 +298,9 @@ float mainPlatformVertices[] =
     0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 14
-    0.05f, -0.7f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    -0.02f,  -0.64f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    0.05f, -0.7f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    -0.02f,  -0.64f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 15
     0.05f, -0.7f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -308,9 +308,9 @@ float mainPlatformVertices[] =
     0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 16
-    0.2f, -0.66f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.1f,  -0.58f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    0.2f, -0.66f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.1f,  -0.58f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 17
     0.2f, -0.66f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -318,9 +318,9 @@ float mainPlatformVertices[] =
     0.0f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 18
-    0.2f, -0.66f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.3f,  -0.5f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.2f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    0.2f, -0.66f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.3f,  -0.5f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.2f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 19
     0.32f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -328,9 +328,9 @@ float mainPlatformVertices[] =
     0.3f,  -0.5f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 20
-    0.32f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.3f,  -0.4f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.35f,  -0.36f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    0.32f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.3f,  -0.4f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.35f,  -0.36f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Triangle 21
     0.32f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
@@ -338,9 +338,9 @@ float mainPlatformVertices[] =
     0.4f,  -0.3f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 
 
     // Triangle 22
-    0.32f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.5f, 1.0f,
-    0.4f,  -0.3f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.5f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f, 
+    0.32f, 0.0f, -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
+    0.4f,  -0.3f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.5f,  0.0f,  -0.3f, 0.3f, 0.93f, 0.3f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 
 
     // Bottom vertices
     // Rectangle 1
@@ -389,9 +389,9 @@ float mainPlatformVertices[] =
     -0.27f, -0.53f, -0.5f, 1.0f, 0.0f, 0.0f, 0.554f, -0.832f, 0.0f, 0.5f, 1.0f, 
 
     // Rectangle 6
-    -0.27f, -0.53f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
-    -0.2f,  -0.53f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
-    -0.27f, -0.53f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.5f, 1.0f,
+    -0.27f, -0.53f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+    -0.2f,  -0.53f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+    -0.27f, -0.53f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.5f, 1.0f,
 
     -0.27f, -0.53f, -0.3f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.5f, 1.0f,
     -0.2f,  -0.53f,  -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
@@ -506,11 +506,11 @@ float mainPlatformVertices[] =
     0.4f,  -0.3f,  -0.3f, 1.0f, 0.0f, 0.0f, 0.949f, -0.316f, 0.0f, 1.0f, 0.0f, 
 };
 
-//Platform Vertices
-float platformVertices[] =
+// Vertices
+float Vertices[] =
 {
     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
-    // Platform vertices
+    //  vertices
     // Top vertices
     // Triangle 1
     0.0f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
@@ -524,85 +524,85 @@ float platformVertices[] =
 
     // Front vertices
     // Triangle 1
-    0.0f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.1f, -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.0f, -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.0f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.1f, -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.0f, -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 
     // Triangle 2
-    0.0f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.1f,  0.0f,  -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.1f,  -0.03f,  -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.0f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.1f,  0.0f,  -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.1f,  -0.03f,  -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 
     // Triangle 3
-    0.1f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,    
-    0.35f, -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.15f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    0.1f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,    
+    0.35f, -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.15f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
     // Triangle 4
-    0.1f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,    
-    0.1f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.35f, -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+    0.1f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,    
+    0.1f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.35f, -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
 
     // Triangle 5    
-    0.1f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.4f, -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.35f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.1f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.4f, -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.35f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 
     // Triangle 6    
-    0.1f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.4f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.4f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.1f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.4f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.4f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 
     // Triangle 7    
-    0.4f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.5f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.4f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.4f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.5f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.4f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 
     // Triangle 8    
-    0.4f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.5f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.5f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    0.4f, 0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.5f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.5f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
     // Back vertices
     // Triangle 1
-    0.0f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.0f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.1f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.0f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.1f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
     // Triangle 2
-    0.0f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.1f,  -0.03f,  -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.1f,  0.0f,  -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    0.0f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.1f,  -0.03f,  -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.1f,  0.0f,  -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
     // Triangle 3
-    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.15f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,    
-    0.35f, -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.15f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,    
+    0.35f, -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
     // Triangle 4
-    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.35f, -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,    
-    0.1f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.35f, -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,    
+    0.1f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
     // Triangle 5    
-    0.1f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.35f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.4f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+    0.1f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.35f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.4f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
     // Triangle 6    
-    0.1f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.4f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.4f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+    0.1f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.4f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.4f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
     // Triangle 7    
-    0.4f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.4f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
-    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+    0.4f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.4f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 
     // Triangle 8    
-    0.4f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
-    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
-    0.5f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+    0.4f, 0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+    0.5f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 
     // Bottom Vertices
     // Rectangle 1
@@ -624,13 +624,13 @@ float platformVertices[] =
     0.0f, -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
 
     // Rectangle 3
-    0.1f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 0.8139f, 0.5819f, 0.0f, 0.0f, 0.0f,
-    0.15f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.8139f, 0.5819f, 0.0f, 0.5f, 1.0f,    
-    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.8139f, 0.5819f, 0.0f, 1.0f, 1.0f,
+    0.1f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, -0.8139f, -0.5819f, 0.0f, 0.0f, 0.0f,
+    0.15f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, -0.8139f, -0.5819f, 0.0f, 0.5f, 1.0f,    
+    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, -0.8139f, -0.5819f, 0.0f, 1.0f, 1.0f,
 
-    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.8139f, 0.5819f, 0.0f, 0.0f, 0.0f,
-    0.15f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, 0.8139f, 0.5819f, 0.0f, 0.5f, 1.0f,
-    0.15f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.8139f, 0.5819f, 0.0f, 1.0f, 0.0f,    
+    0.1f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, -0.8139f, -0.5819f, 0.0f, 0.0f, 0.0f,
+    0.15f,  -0.1f, -0.5f, 1.0f, 1.0f, 1.0f, -0.8139f, -0.5819f, 0.0f, 0.5f, 1.0f,
+    0.15f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, -0.8139f, -0.5819f, 0.0f, 1.0f, 0.0f,    
 
     // Rectangle 4
     0.15f,  -0.1f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
@@ -660,13 +660,13 @@ float platformVertices[] =
     0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 0.0f, -1.0f, 0.0f, 0.5f, 1.0f,
 
     // Rectangle 7
-    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-    0.5f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
-    0.5f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    0.5f,  -0.03f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+    0.5f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
 
-    0.5f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-    0.5f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
-    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, -1.0f, 0.0f, 0.0f, 0.5f, 1.0f,
+    0.5f,  0.0f, -0.5f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+    0.5f,  0.0f, -0.3f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, -1.0f, 0.0f,
+    0.5f,  -0.03f, -0.3f, 1.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 0.5f, 1.0f,
 
 };
 
@@ -104431,21 +104431,21 @@ GLuint indicesFly[] =
 // define OpenGL object IDs to represent the vertex array and the shader program in the GPU
 
 // vertex array objects (store the render state for our vertex array)
-GLuint vao1;        // vao for Main Platform Vertices
-GLuint vao2;        // vao for first platform
-GLuint vao3;        // vao for second platform
-GLuint vao4;        // vao for third platform
-GLuint vao5;        // vao for fourth platform
+GLuint vao1;        // vao for Main  Vertices
+GLuint vao2;        // vao for first 
+GLuint vao3;        // vao for second 
+GLuint vao4;        // vao for third 
+GLuint vao5;        // vao for fourth 
 GLuint vao6;        // vao for background
 GLuint vao7;        // vao for background clouds
 GLuint vaoKirby;
 GLuint vaoKirbyFly;
 
 // vertex buffer objects (reserve GPU memory for our vertex array)
-GLuint vbo1;        // vbo for Main Platform Vertices
-GLuint vbo2;        // vbo for first platform
-GLuint vbo3;        // vbo for second platform
-GLuint vbo4;        // vbo for third platform
+GLuint vbo1;        // vbo for Main  Vertices
+GLuint vbo2;        // vbo for first 
+GLuint vbo3;        // vbo for second 
+GLuint vbo4;        // vbo for third 
 GLuint vbo5;        // vbo for fourth plaform
 GLuint vbo6;        // vbo for background
 GLuint vbo7;        // vbo for background clouds
@@ -104453,15 +104453,14 @@ GLuint vboKirby;
 GLuint vboKirbyFly;
 
 // combined vertex and fragment shaders
-GLuint shader1;     // shader for Main Platform Vertices
-GLuint shader2;     // shader for first platform
-GLuint shader3;     // shader for second platform
-GLuint shader4;     // shader for third platform
-GLuint shader5;     // shader for fourth platform
+GLuint shader1;     // shader for Main  Vertices
+GLuint shader2;     // shader for first 
+GLuint shader3;     // shader for second 
+GLuint shader4;     // shader for third 
+GLuint shader5;     // shader for fourth 
 GLuint shader6;     // shader for background
 GLuint shader7;     // shader for background clouds
 GLuint shaderKirby;
-GLuint shaderKirbyFly;
 
 // element buffer objects
 GLuint eboKirby;
@@ -104469,8 +104468,8 @@ GLuint eboKirbyFly;
 
 // textures
 GLuint bgtexture;   // background texture
-GLuint texture0;    // first texture - main platform
-GLuint texture1;    // second texture - small platform
+GLuint texture0;    // first texture - main 
+GLuint texture1;    // second texture - small 
 GLuint texture2;    // third texture - background
 GLuint texture3;    // third texture - background clouds
 GLuint kirbyTexture; // kirby texture
@@ -104491,12 +104490,14 @@ bool firstMouse = true;
 float lastX = 640.0f / 2.0;
 float lastY = 360.0f / 2.0;
 
+// camera variables
+glm::vec3 lightPosition = glm::vec3(0.0f, 0.0f, 0.0f);
 
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
 bool setup()
 {
-    // setup for main platform
+    // setup for main 
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(1, &vao1);
@@ -104507,7 +104508,7 @@ bool setup()
 
     // upload our vertex array data to the newly-created VBO
     glBindBuffer(GL_ARRAY_BUFFER, vbo1);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(mainPlatformVertices), mainPlatformVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(mainVertices), mainVertices, GL_STATIC_DRAW);
 
     // on the VAO, register the current VBO with the following vertex attribute layout:
     // - layout location 0...
@@ -104545,7 +104546,7 @@ bool setup()
     glEnableVertexAttribArray(3);
 
 
-    // setup for first platform
+    // setup for first 
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(2, &vao2);
@@ -104556,7 +104557,7 @@ bool setup()
 
     // upload our vertex array data to the newly-created VBO
     glBindBuffer(GL_ARRAY_BUFFER, vbo2);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(platformVertices), platformVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
     // on the VAO, register the current VBO with the following vertex attribute layout:
     // - layout location 0...
@@ -104593,7 +104594,7 @@ bool setup()
     // and also the texture coordinates
     glEnableVertexAttribArray(3);
 
-    // setup for second platform
+    // setup for second 
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(3, &vao3);
@@ -104604,7 +104605,7 @@ bool setup()
 
     // upload our vertex array data to the newly-created VBO
     glBindBuffer(GL_ARRAY_BUFFER, vbo3);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(platformVertices), platformVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
     // on the VAO, register the current VBO with the following vertex attribute layout:
     // - layout location 0...
@@ -104641,7 +104642,7 @@ bool setup()
     // and also the texture coordinates
     glEnableVertexAttribArray(3);
 
-    // setup for the third platform
+    // setup for the third 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(4, &vao4);
     glGenBuffers(4, &vbo4);
@@ -104651,7 +104652,7 @@ bool setup()
 
     // upload our vertex array data to the newly-created VBO
     glBindBuffer(GL_ARRAY_BUFFER, vbo4);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(platformVertices), platformVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
     // on the VAO, register the current VBO with the following vertex attribute layout:
     // - layout location 0...
@@ -104688,7 +104689,7 @@ bool setup()
     // and also the texture coordinates
     glEnableVertexAttribArray(3);
 
-// setup for the fourth platform
+// setup for the fourth 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
     glGenVertexArrays(5, &vao5);
     glGenBuffers(5, &vbo5);
@@ -104698,7 +104699,7 @@ bool setup()
 
     // upload our vertex array data to the newly-created VBO
     glBindBuffer(GL_ARRAY_BUFFER, vbo5);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(platformVertices), platformVertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
 
     // on the VAO, register the current VBO with the following vertex attribute layout:
     // - layout location 0...
@@ -104937,43 +104938,43 @@ bool setup()
     // and also the texture coordinates
     glEnableVertexAttribArray(3);
 
-    // load our shader program for main platform
-    shader1 = gdevLoadShader("exercise3-1.vs", "exercise3.fs");
+    // load our shader program for main 
+    shader1 = gdevLoadShader("gdev32-1.vs", "gdev32.fs");
     if (! shader1)
         return false;
 
-    // load our shader program for first platform
-    shader2 = gdevLoadShader("exercise3-2.vs", "exercise3.fs");
+    // load our shader program for first 
+    shader2 = gdevLoadShader("gdev32-2.vs", "gdev32.fs");
     if (! shader2)
         return false;
     
-    // load our shader program for second platform
-    shader3 = gdevLoadShader("exercise3-3.vs", "exercise3.fs");
+    // load our shader program for second 
+    shader3 = gdevLoadShader("gdev32-3.vs", "gdev32.fs");
     if (! shader3)
         return false;
 
-    // load our shader program for third platform
-    shader4 = gdevLoadShader("exercise3-4.vs", "exercise3.fs");
+    // load our shader program for third 
+    shader4 = gdevLoadShader("gdev32-4.vs", "gdev32.fs");
     if (! shader4)
         return false;
 
-    // load our shader program for fourth platform
-    shader5 = gdevLoadShader("exercise3-5.vs", "exercise3.fs");
+    // load our shader program for fourth 
+    shader5 = gdevLoadShader("gdev32-5.vs", "gdev32.fs");
     if (! shader5)
         return false;
 
     // load our shader program for background
-    shader6 = gdevLoadShader("exercise3-6.vs", "exercise3.fs");
+    shader6 = gdevLoadShader("gdev32-6.vs", "gdev32.fs");
     if (!shader6)
         return false;
 
     // load our shader program for background
-    shader7 = gdevLoadShader("exercise3-7.vs", "exercise3.fs");
+    shader7 = gdevLoadShader("gdev32-7.vs", "gdev32.fs");
     if (!shader7)
         return false;
 
     // load our shader program for kirby
-    shaderKirby = gdevLoadShader("exercise3-kirby.vs", "exercise3.fs");
+    shaderKirby = gdevLoadShader("gdev32-kirby.vs", "gdev32.fs");
     if (! shaderKirby)
         return false;
 
@@ -105011,6 +105012,8 @@ bool setup()
     eyePosition = glm::vec3(-1.0f, 1.0f, 3.5f);
     forwardVector = glm::vec3(0.0f, 0.0f, -1.0f);
     upVector = glm::vec3(0.0f, 1.0f, 0.0f);
+
+    glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
 
     return true;
 }
@@ -105062,20 +105065,25 @@ void render()
     glm::mat4 matrix1;
     matrix1 = glm::translate(baseMatrix, glm::vec3(-1.0f, 0.2f, 0.0f));
 
-    // matrix1 = glm::rotate(matrix1, glm::radians(60.0f),
-    //         glm::vec3(0.0f, 0.0f, 1.0f));
-
-    // matrix1 = glm::rotate(matrix1, glm::radians(rotationAngle),
-    //         glm::vec3(1.0f, 0.0f, 0.0f));
-
     matrix1 = glm::scale(matrix1, glm::vec3(4.0f, 1.0f, 2.0f));
+
+    // normal matrix    
+    glm::mat4 nmatrix1;
+    nmatrix1 = glm::transpose(glm::inverse(matrix1));
+    glm::mat3 nmatrix1_3x3 = glm::mat3(nmatrix1);
 
     glUniformMatrix4fv(glGetUniformLocation(shader1, "matrix1"),
             1, GL_FALSE, glm::value_ptr(matrix1));
+    glUniformMatrix3fv(glGetUniformLocation(shader1, "nmatrix1"),
+            1, GL_FALSE, glm::value_ptr(nmatrix1_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture0); 
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader1, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader1, "shaderTexture0"), 0);
@@ -105083,7 +105091,7 @@ void render()
 
     // ... draw our triangles
     glBindVertexArray(vao1);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainPlatformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
 
 
     // using our shader program for the second triangle...
@@ -105099,27 +105107,32 @@ void render()
     glm::mat4 matrix2;
     matrix2 = glm::translate(baseMatrix, glm::vec3(-0.5f, 1.5f, -0.2f));
 
-    //matrix2 = glm::rotate(matrix2, glm::radians(15.0f),
-            //glm::vec3(1.0f, 0.0f, 0.0f));
-
-    //matrix2 = glm::rotate(matrix2, glm::radians(rotationAngle),
-            //glm::vec3(0.0f, 1.0f, 0.0f));
-
     matrix2 = glm::scale(matrix2, glm::vec3(2.0f, 1.0f, 1.5f));
+
+    // normal matrix
+    glm::mat4 nmatrix2;
+    nmatrix2 = glm::transpose(glm::inverse(matrix2));
+    glm::mat3 nmatrix2_3x3 = glm::mat3(nmatrix2);
 
     glUniformMatrix4fv(glGetUniformLocation(shader2, "matrix2"),
             1, GL_FALSE, glm::value_ptr(matrix2));
+    glUniformMatrix3fv(glGetUniformLocation(shader2, "nmatrix2"),
+            1, GL_FALSE, glm::value_ptr(nmatrix2_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture1); 
+    glBindTexture(GL_TEXTURE_2D, texture1);
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader2, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader2, "shaderTexture0"), 0);
 
     // ... draw our triangles
     glBindVertexArray(vao2);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainPlatformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
 
 
     // using our shader program for the third triangle...
@@ -105135,29 +105148,34 @@ void render()
     glm::mat4 matrix3;
     matrix3 = glm::translate(baseMatrix, glm::vec3(-2.5f, 1.5f, -0.2f));
 
-    // matrix3 = glm::rotate(matrix3, glm::radians(105.0f),
-    //         glm::vec3(0.0f, 1.0f, 0.0f));
-
-    // matrix3 = glm::rotate(matrix3, glm::radians(rotationAngle),
-    //         glm::vec3(0.0f, 0.0f, 1.0f));
-
     matrix3 = glm::scale(matrix3, glm::vec3(2.0f, 1.0f, 1.5f));
+
+    // normal matrix
+    glm::mat4 nmatrix3;
+    nmatrix3 = glm::transpose(glm::inverse(matrix3));
+    glm::mat3 nmatrix3_3x3 = glm::mat3(nmatrix3);
 
     glUniformMatrix4fv(glGetUniformLocation(shader3, "matrix3"),
             1, GL_FALSE, glm::value_ptr(matrix3));
+    glUniformMatrix3fv(glGetUniformLocation(shader3, "nmatrix3"),
+            1, GL_FALSE, glm::value_ptr(nmatrix3_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture1); 
+    glBindTexture(GL_TEXTURE_2D, texture1);
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader3, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader3, "shaderTexture0"), 0);
 
     // ... draw our triangles
     glBindVertexArray(vao3);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainPlatformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
 
-    // third platform
+    // third 
     glUseProgram(shader4);
 
     // ... enable cull face ...
@@ -105170,29 +105188,34 @@ void render()
     glm::mat4 matrix4;
     matrix4 = glm::translate(baseMatrix, glm::vec3(-3.5f, 0.9f, -0.2f));
 
-    // matrix4 = glm::rotate(matrix4, glm::radians(105.0f),
-    //         glm::vec3(0.0f, 1.0f, 0.0f));
-
-    // matrix4 = glm::rotate(matrix4, glm::radians(rotationAngle),
-    //         glm::vec3(0.0f, 0.0f, 1.0f));
-
     matrix4 = glm::scale(matrix4, glm::vec3(2.0f, 1.0f, 1.5f));
+
+    // normal matrix
+    glm::mat4 nmatrix4;
+    nmatrix4 = glm::transpose(glm::inverse(matrix4));
+    glm::mat3 nmatrix4_3x3 = glm::mat3(nmatrix4);
 
     glUniformMatrix4fv(glGetUniformLocation(shader4, "matrix4"),
             1, GL_FALSE, glm::value_ptr(matrix4));
+    glUniformMatrix3fv(glGetUniformLocation(shader4, "nmatrix4"),
+            1, GL_FALSE, glm::value_ptr(nmatrix4_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1); 
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader4, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader4, "shaderTexture0"), 0);
 
     // ... draw our triangles
     glBindVertexArray(vao4);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
-    // fourth platform
+    // fourth 
     glUseProgram(shader5);
 
     // ... enable cull face ...
@@ -105205,27 +105228,32 @@ void render()
     glm::mat4 matrix5;
     matrix5 = glm::translate(baseMatrix, glm::vec3(0.5f, 0.9f, -0.2f));
 
-    // matrix5 = glm::rotate(matrix5, glm::radians(105.0f),
-    //         glm::vec3(0.0f, 1.0f, 0.0f));
-
-    // matrix5 = glm::rotate(matrix5, glm::radians(rotationAngle),
-    //         glm::vec3(0.0f, 0.0f, 1.0f));
-
     matrix5 = glm::scale(matrix5, glm::vec3(2.0f, 1.0f, 1.5f));
+
+    // normal matrix
+    glm::mat4 nmatrix5;
+    nmatrix5 = glm::transpose(glm::inverse(matrix5));
+    glm::mat3 nmatrix5_3x3 = glm::mat3(nmatrix5);
 
     glUniformMatrix4fv(glGetUniformLocation(shader5, "matrix5"),
             1, GL_FALSE, glm::value_ptr(matrix5));
+    glUniformMatrix3fv(glGetUniformLocation(shader5, "nmatrix5"),
+            1, GL_FALSE, glm::value_ptr(nmatrix5_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1); 
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader5, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader5, "shaderTexture0"), 0);
 
     // ... draw our triangles
     glBindVertexArray(vao5);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
 //Background
     glUseProgram(shader6);
@@ -105240,27 +105268,32 @@ void render()
     glm::mat4 matrix6;
     matrix6 = glm::translate(baseMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
 
-    // matrix6 = glm::rotate(matrix6, glm::radians(105.0f),
-    //         glm::vec3(0.0f, 1.0f, 0.0f));
-
-    // matrix6 = glm::rotate(matrix6, glm::radians(rotationAngle),
-    //         glm::vec3(0.0f, 0.0f, 1.0f));
-
     matrix6 = glm::scale(matrix6, glm::vec3(8.5f, 5.0f, 1.0f));
+
+    // normal matrix
+    glm::mat4 nmatrix6;
+    nmatrix6 = glm::transpose(glm::inverse(matrix6));
+    glm::mat3 nmatrix6_3x3 = glm::mat3(nmatrix6);
 
     glUniformMatrix4fv(glGetUniformLocation(shader6, "matrix6"),
         1, GL_FALSE, glm::value_ptr(matrix6));
+    glUniformMatrix3fv(glGetUniformLocation(shader6, "nmatrix6"),
+        1, GL_FALSE, glm::value_ptr(nmatrix6_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture2);
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader6, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader6, "shaderTexture0"), 0);
 
     // ... draw our triangles
     glBindVertexArray(vao6);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
 //Background Clouds
     glUseProgram(shader7);
@@ -105275,27 +105308,32 @@ void render()
     glm::mat4 matrix7;
     matrix7 = glm::translate(baseMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
 
-    // matrix6 = glm::rotate(matrix6, glm::radians(105.0f),
-    //         glm::vec3(0.0f, 1.0f, 0.0f));
-
-    // matrix6 = glm::rotate(matrix6, glm::radians(rotationAngle),
-    //         glm::vec3(0.0f, 0.0f, 1.0f));
-
     matrix7 = glm::scale(matrix6, glm::vec3(1.0f, 1.0f, 5.0f)); // Leave this as matrix 6
+
+    // normal matrix
+    glm::mat4 nmatrix7;
+    nmatrix7 = glm::transpose(glm::inverse(matrix7));
+    glm::mat3 nmatrix7_3x3 = glm::mat3(nmatrix7);
 
     glUniformMatrix4fv(glGetUniformLocation(shader7, "matrix7"),
         1, GL_FALSE, glm::value_ptr(matrix7));
+    glUniformMatrix3fv(glGetUniformLocation(shader7, "nmatrix7"),
+        1, GL_FALSE, glm::value_ptr(nmatrix7_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture3);
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shader7, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader7, "shaderTexture0"), 0);
 
     // ... draw our triangles
     glBindVertexArray(vao7);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(platformVertices) / (11 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
     // using our shader program for the kirby
     glUseProgram(shaderKirby);
@@ -105358,8 +105396,15 @@ void render()
 
     matrixKirby = glm::scale(matrixKirby, glm::vec3(0.05f, 0.05f, 0.05f));
 
+    // normal matrix
+    glm::mat4 nmatrixKirby;
+    nmatrixKirby = glm::transpose(glm::inverse(matrixKirby));
+    glm::mat3 nmatrixKirby_3x3 = glm::mat3(nmatrixKirby);
+
     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "matrixKirby"),
             1, GL_FALSE, glm::value_ptr(matrixKirby));
+    glUniformMatrix3fv(glGetUniformLocation(shaderKirby, "nmatrixKirby"),
+            1, GL_FALSE, glm::value_ptr(nmatrixKirby_3x3));
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
@@ -105370,6 +105415,10 @@ void render()
     else {
         glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture);
     }
+
+    // ... set up the light position...
+    glUniform3fv(glGetUniformLocation(shaderKirby, "lightPosition"),
+                 1, glm::value_ptr(lightPosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shaderKirby, "shaderTexture0"), 0);
@@ -105509,7 +105558,22 @@ int main(int argc, char** argv)
                 eyePosition -= glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
             if (glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
                 eyePosition += glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
+        
+            
+            glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
+            glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
+            // Light Controls
+            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+                lightPosition += cameraSpeed * lightForward;
+            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+                lightPosition -= cameraSpeed * lightForward;
+            if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+                lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            
+            // Camera Clamp
             eyePosition.x = std::max(-5.0f, std::min(3.0f, eyePosition.x));
             eyePosition.y = std::max(-1.0f, std::min(3.0f, eyePosition.y));
             eyePosition.z = std::max(-1.0f, std::min(7.5f, eyePosition.z));
