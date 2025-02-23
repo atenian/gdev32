@@ -4,12 +4,11 @@ in vec3 shaderColor;
 in vec2 shaderTexCoord;
 in vec3 worldSpacePosition;
 in vec3 worldSpaceNormal;
+in float objectType;
 
 uniform vec3 eyePosition;
 uniform vec3 lightPosition;
-
 uniform sampler2D shaderTexture0;
-uniform sampler2D shaderTexture1;
 
 out vec4 finalColor;
 
@@ -19,12 +18,20 @@ void main()
     vec3 e = normalize(eyePosition - worldSpacePosition); // surface to eye
     vec3 n = normalize(worldSpaceNormal); // normal vector
     float s = 8.0f; // shininess value
-    vec3 r = ((-l)-2*(n*(-l))*(-l));// reflection vector
+    vec3 r = reflect(-l, n); // reflection vector
 
-    float diffuseColor = max(dot(l, n), 0.0f);
-    float ambientColor = 0.05f;
-    float specularLighting = pow(max(dot(r,e),0),s);
+    float ambient = 0.5f;
+    float diffuse = max(dot(n, l), 0.0f);
+    float specular = pow(max(dot(r,e),0),s);
 
-    vec4 color0 = vec4(shaderColor*(diffuseColor+ambientColor), 1.0f)  * texture(shaderTexture0, shaderTexCoord);
-    finalColor = color0;
+    if (objectType == 1.0f){ // if object is background, less affected by the light
+        ambient = 0.95f;
+        diffuse = diffuse / 5.0f;
+    }
+
+    vec4 texColor = texture(shaderTexture0, shaderTexCoord);
+    vec3 finalLighting = (ambient + diffuse) * shaderColor * texColor.rgb + 
+                        specular * 0.0f;
+
+    finalColor = vec4(finalLighting, texColor.a);
 }

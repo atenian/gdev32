@@ -11,6 +11,7 @@ out vec3 shaderColor;
 out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
 out vec3 worldSpaceNormal;
+out float objectType;
 
 void main()
 {
@@ -19,4 +20,5 @@ void main()
     shaderTexCoord = vertexTexCoord;
     worldSpacePosition = (matrix3 * vec4(vertexPosition, 1.0f)).xyz;
     worldSpaceNormal = normalize(nmatrix3 * normalVector);
+    objectType = 0.0f;
 }

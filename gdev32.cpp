@@ -35,13 +35,13 @@ float backgroundVertices[] =
     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
     // back/main background of the cube
     // Triangle 1
-    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.25f, 0.66f,
-    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.25f, 0.33f,
-    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.50f, 0.33f,
+    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.25f, 0.66f,
+    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.25f, 0.33f,
+    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.50f, 0.33f,
 
-    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.25f, 0.66f,
-    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.50f, 0.33f,
-    1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.50f, 0.66f,
+    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.25f, 0.66f,
+    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.50f, 0.33f,
+    1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.50f, 0.66f,
 };
 
 float backgroundVertices2[] =
@@ -49,14 +49,14 @@ float backgroundVertices2[] =
     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
     // Bottom of the cube
     // Triangle 1
-    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.33f,
-    0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.0f,   
-    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 0.0f,
+    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.33f,
+    0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.0f,   
+    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.0f,
 
     // Triangle 2
-    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.33f,
-    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 0.0f,
-    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 0.33f,
+    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.33f,
+    1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.0f,
+    1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.33f,
 
     // Top of the cube
     // Triangle 1
@@ -82,14 +82,14 @@ float backgroundVertices2[] =
 
     // Left of the cube
     // Triangle 1
-    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.25f, 0.66f,
-    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.0f, 0.66f,
-    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.25f, 0.33f,
+    0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.25f, 0.66f,
+    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.0f, 0.66f,
+    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.25f, 0.33f,
 
     // Triangle 2
-    0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.0f, 0.33f,
-    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.25f, 0.33f,
-    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.0f, 0.66f,
+    0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.0f, 0.33f,
+    0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.25f, 0.33f,
+    0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.0f, 0.66f,
 
     // Right of the cube
     // Triangle 1
@@ -104475,7 +104475,10 @@ GLuint texture3;    // third texture - background clouds
 GLuint kirbyTexture; // kirby texture
 GLuint kirbyFlyTexture;
 
-glm::vec3 eyePosition, forwardVector, upVector; // parameters of lookAt function
+//glm::vec3 eyePosition, forwardVector, upVector; // parameters of lookAt function
+glm::vec3 eyePosition = glm::vec3(-1.0f, 1.0f, 3.5f);
+glm::vec3 forwardVector = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
 // timing
 float deltaTime = 0.0f; // time between current frame and last frame
@@ -104491,7 +104494,7 @@ float lastX = 640.0f / 2.0;
 float lastY = 360.0f / 2.0;
 
 // camera variables
-glm::vec3 lightPosition = glm::vec3(0.0f, 0.0f, 0.0f);
+glm::vec3 lightPosition = glm::vec3(5.0f, 10.0f, 5.0f);
 
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
@@ -104549,8 +104552,8 @@ bool setup()
     // setup for first 
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(2, &vao2);
-    glGenBuffers(2, &vbo2);
+    glGenVertexArrays(1, &vao2);
+    glGenBuffers(1, &vbo2);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao2);
@@ -104597,8 +104600,8 @@ bool setup()
     // setup for second 
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(3, &vao3);
-    glGenBuffers(3, &vbo3);
+    glGenVertexArrays(1, &vao3);
+    glGenBuffers(1, &vbo3);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao3);
@@ -104644,8 +104647,8 @@ bool setup()
 
     // setup for the third 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(4, &vao4);
-    glGenBuffers(4, &vbo4);
+    glGenVertexArrays(1, &vao4);
+    glGenBuffers(1, &vbo4);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao4);
@@ -104691,8 +104694,8 @@ bool setup()
 
 // setup for the fourth 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(5, &vao5);
-    glGenBuffers(5, &vbo5);
+    glGenVertexArrays(1, &vao5);
+    glGenBuffers(1, &vbo5);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao5);
@@ -104738,8 +104741,8 @@ bool setup()
 
 //  setup for background
         // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(6, &vao6);
-    glGenBuffers(6, &vbo6);
+    glGenVertexArrays(1, &vao6);
+    glGenBuffers(1, &vbo6);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao6);
@@ -104785,8 +104788,8 @@ bool setup()
 
 //  setup for background clouds
         // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(7, &vao7);
-    glGenBuffers(7, &vbo7);
+    glGenVertexArrays(1, &vao7);
+    glGenBuffers(1, &vbo7);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vao7);
@@ -104833,9 +104836,9 @@ bool setup()
     // setup for kirby
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(8, &vaoKirby);
-    glGenBuffers(8, &vboKirby);
-    glGenBuffers(9, &eboKirby);
+    glGenVertexArrays(1, &vaoKirby);
+    glGenBuffers(1, &vboKirby);
+    glGenBuffers(1, &eboKirby);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vaoKirby);
@@ -104887,9 +104890,9 @@ bool setup()
     // setup for kirby fly
 
     // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
-    glGenVertexArrays(10, &vaoKirbyFly);
-    glGenBuffers(10, &vboKirbyFly);
-    glGenBuffers(11, &eboKirbyFly);
+    glGenVertexArrays(1, &vaoKirbyFly);
+    glGenBuffers(1, &vboKirbyFly);
+    glGenBuffers(1, &eboKirbyFly);
 
     // bind the newly-created VAO to make it the current one that OpenGL will apply state changes to
     glBindVertexArray(vaoKirbyFly);
@@ -105007,11 +105010,6 @@ bool setup()
     kirbyFlyTexture = gdevLoadTexture("kirby-jump.png", GL_REPEAT, true, true);
     if (!kirbyFlyTexture)
         return false;
-    
-    // setting camera position to (-2, 0, 3), forward vector to (0,0,-1), and up vector (0,1,0)
-    eyePosition = glm::vec3(-1.0f, 1.0f, 3.5f);
-    forwardVector = glm::vec3(0.0f, 0.0f, -1.0f);
-    upVector = glm::vec3(0.0f, 1.0f, 0.0f);
 
     glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
 
@@ -105043,8 +105041,8 @@ void render()
     glm::mat4 viewTransform;
     viewTransform = glm::lookAt(eyePosition, eyePosition + forwardVector, upVector);
 
-    // multiplying perspective matrix by view transform matrix
-    baseMatrix = baseMatrix * viewTransform;
+    // have model matrix for normals
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105063,14 +105061,15 @@ void render()
 
     // ... calculate matrix for first triangle ...
     glm::mat4 matrix1;
-    matrix1 = glm::translate(baseMatrix, glm::vec3(-1.0f, 0.2f, 0.0f));
-
+    matrix1 = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.2f, 0.0f));
     matrix1 = glm::scale(matrix1, glm::vec3(4.0f, 1.0f, 2.0f));
 
     // normal matrix    
     glm::mat4 nmatrix1;
     nmatrix1 = glm::transpose(glm::inverse(matrix1));
     glm::mat3 nmatrix1_3x3 = glm::mat3(nmatrix1);
+
+    matrix1 = baseMatrix * viewTransform * matrix1;
 
     glUniformMatrix4fv(glGetUniformLocation(shader1, "matrix1"),
             1, GL_FALSE, glm::value_ptr(matrix1));
@@ -105084,6 +105083,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader1, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
+    glUniform3fv(glGetUniformLocation(shader1, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader1, "shaderTexture0"), 0);
@@ -105105,14 +105106,15 @@ void render()
 
     // ... calculate matrix for second triangle ...
     glm::mat4 matrix2;
-    matrix2 = glm::translate(baseMatrix, glm::vec3(-0.5f, 1.5f, -0.2f));
-
+    matrix2 = glm::translate(modelMatrix, glm::vec3(-0.5f, 1.5f, -0.2f));
     matrix2 = glm::scale(matrix2, glm::vec3(2.0f, 1.0f, 1.5f));
 
     // normal matrix
     glm::mat4 nmatrix2;
     nmatrix2 = glm::transpose(glm::inverse(matrix2));
     glm::mat3 nmatrix2_3x3 = glm::mat3(nmatrix2);
+
+    matrix2 = baseMatrix * viewTransform * matrix2;
 
     glUniformMatrix4fv(glGetUniformLocation(shader2, "matrix2"),
             1, GL_FALSE, glm::value_ptr(matrix2));
@@ -105126,6 +105128,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader2, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
+    glUniform3fv(glGetUniformLocation(shader2, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader2, "shaderTexture0"), 0);
@@ -105146,14 +105150,15 @@ void render()
 
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix3;
-    matrix3 = glm::translate(baseMatrix, glm::vec3(-2.5f, 1.5f, -0.2f));
-
+    matrix3 = glm::translate(modelMatrix, glm::vec3(-2.5f, 1.5f, -0.2f));
     matrix3 = glm::scale(matrix3, glm::vec3(2.0f, 1.0f, 1.5f));
 
     // normal matrix
     glm::mat4 nmatrix3;
     nmatrix3 = glm::transpose(glm::inverse(matrix3));
     glm::mat3 nmatrix3_3x3 = glm::mat3(nmatrix3);
+
+    matrix3 = baseMatrix * viewTransform * matrix3;
 
     glUniformMatrix4fv(glGetUniformLocation(shader3, "matrix3"),
             1, GL_FALSE, glm::value_ptr(matrix3));
@@ -105167,6 +105172,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader3, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
+    glUniform3fv(glGetUniformLocation(shader3, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader3, "shaderTexture0"), 0);
@@ -105186,14 +105193,15 @@ void render()
 
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix4;
-    matrix4 = glm::translate(baseMatrix, glm::vec3(-3.5f, 0.9f, -0.2f));
-
+    matrix4 = glm::translate(modelMatrix, glm::vec3(-3.5f, 0.9f, -0.2f));
     matrix4 = glm::scale(matrix4, glm::vec3(2.0f, 1.0f, 1.5f));
 
     // normal matrix
     glm::mat4 nmatrix4;
     nmatrix4 = glm::transpose(glm::inverse(matrix4));
     glm::mat3 nmatrix4_3x3 = glm::mat3(nmatrix4);
+
+    matrix4 = baseMatrix * viewTransform * matrix4;
 
     glUniformMatrix4fv(glGetUniformLocation(shader4, "matrix4"),
             1, GL_FALSE, glm::value_ptr(matrix4));
@@ -105207,7 +105215,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader4, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
-
+    glUniform3fv(glGetUniformLocation(shader4, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader4, "shaderTexture0"), 0);
 
@@ -105226,14 +105235,15 @@ void render()
 
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix5;
-    matrix5 = glm::translate(baseMatrix, glm::vec3(0.5f, 0.9f, -0.2f));
-
+    matrix5 = glm::translate(modelMatrix, glm::vec3(0.5f, 0.9f, -0.2f));
     matrix5 = glm::scale(matrix5, glm::vec3(2.0f, 1.0f, 1.5f));
 
     // normal matrix
     glm::mat4 nmatrix5;
     nmatrix5 = glm::transpose(glm::inverse(matrix5));
     glm::mat3 nmatrix5_3x3 = glm::mat3(nmatrix5);
+
+    matrix5 = baseMatrix * viewTransform * matrix5;
 
     glUniformMatrix4fv(glGetUniformLocation(shader5, "matrix5"),
             1, GL_FALSE, glm::value_ptr(matrix5));
@@ -105247,6 +105257,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader5, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
+    glUniform3fv(glGetUniformLocation(shader5, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));             
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader5, "shaderTexture0"), 0);
@@ -105266,14 +105278,15 @@ void render()
 
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix6;
-    matrix6 = glm::translate(baseMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
-
+    matrix6 = glm::translate(modelMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
     matrix6 = glm::scale(matrix6, glm::vec3(8.5f, 5.0f, 1.0f));
 
     // normal matrix
     glm::mat4 nmatrix6;
     nmatrix6 = glm::transpose(glm::inverse(matrix6));
     glm::mat3 nmatrix6_3x3 = glm::mat3(nmatrix6);
+
+    matrix6 = baseMatrix * viewTransform * matrix6;
 
     glUniformMatrix4fv(glGetUniformLocation(shader6, "matrix6"),
         1, GL_FALSE, glm::value_ptr(matrix6));
@@ -105287,7 +105300,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader6, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
-
+    glUniform3fv(glGetUniformLocation(shader6, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader6, "shaderTexture0"), 0);
 
@@ -105306,14 +105320,15 @@ void render()
 
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix7;
-    matrix7 = glm::translate(baseMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
-
-    matrix7 = glm::scale(matrix6, glm::vec3(1.0f, 1.0f, 5.0f)); // Leave this as matrix 6
+    matrix7 = glm::translate(modelMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
+    matrix7 = glm::scale(matrix7, glm::vec3(8.5f, 5.0f, 5.0f)); // Leave this as matrix 6
 
     // normal matrix
     glm::mat4 nmatrix7;
     nmatrix7 = glm::transpose(glm::inverse(matrix7));
     glm::mat3 nmatrix7_3x3 = glm::mat3(nmatrix7);
+
+    matrix7 = baseMatrix * viewTransform * matrix7;
 
     glUniformMatrix4fv(glGetUniformLocation(shader7, "matrix7"),
         1, GL_FALSE, glm::value_ptr(matrix7));
@@ -105327,6 +105342,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shader7, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
+    glUniform3fv(glGetUniformLocation(shader7, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader7, "shaderTexture0"), 0);
@@ -105377,7 +105394,7 @@ void render()
 
     // ... calculate matrix for first triangle ...
     glm::mat4 matrixKirby;
-    matrixKirby = glm::translate(baseMatrix, glm::vec3(-3.0f + distance + walk, 1.08f + jump + arc, -0.75f));
+    matrixKirby = glm::translate(modelMatrix, glm::vec3(-3.0f + distance + walk, 1.08f + jump + arc, -0.75f));
 
     if (timer >= 0){
         matrixKirby = glm::rotate(matrixKirby, glm::radians(walk * 180.0f - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
@@ -105401,6 +105418,8 @@ void render()
     nmatrixKirby = glm::transpose(glm::inverse(matrixKirby));
     glm::mat3 nmatrixKirby_3x3 = glm::mat3(nmatrixKirby);
 
+    matrixKirby = baseMatrix * viewTransform * matrixKirby;
+
     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "matrixKirby"),
             1, GL_FALSE, glm::value_ptr(matrixKirby));
     glUniformMatrix3fv(glGetUniformLocation(shaderKirby, "nmatrixKirby"),
@@ -105419,6 +105438,8 @@ void render()
     // ... set up the light position...
     glUniform3fv(glGetUniformLocation(shaderKirby, "lightPosition"),
                  1, glm::value_ptr(lightPosition));
+    glUniform3fv(glGetUniformLocation(shaderKirby, "eyePosition"), 
+                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shaderKirby, "shaderTexture0"), 0);
@@ -105564,14 +105585,14 @@ int main(int argc, char** argv)
             glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
             // Light Controls
-            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
-                lightPosition += cameraSpeed * lightForward;
-            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
-                lightPosition -= cameraSpeed * lightForward;
-            if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
-                lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
-            if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            // if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+            //     lightPosition += cameraSpeed * lightForward;
+            // if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+            //     lightPosition -= cameraSpeed * lightForward;
+            // if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+            //     lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            // if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+            //     lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
             
             // Camera Clamp
             eyePosition.x = std::max(-5.0f, std::min(3.0f, eyePosition.x));

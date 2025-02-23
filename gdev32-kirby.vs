@@ -11,6 +11,7 @@ out vec3 shaderColor;
 out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
 out vec3 worldSpaceNormal;
+out float objectType;
 
 void main()
 {
@@ -18,5 +19,6 @@ void main()
     shaderColor = vertexColor;
     shaderTexCoord = vertexTexCoord;
     worldSpacePosition = (matrixKirby * vec4(vertexPosition, 1.0f)).xyz;
-    worldSpaceNormal = nmatrixKirby * normalVector;
+    worldSpaceNormal = normalize(nmatrixKirby * normalVector);
+    objectType = 0.0f;
 }
