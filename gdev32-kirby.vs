@@ -5,8 +5,9 @@ layout (location = 1) in vec3 vertexColor;
 layout (location = 2) in vec3 normalVector;
 layout (location = 3) in vec2 vertexTexCoord;
 
+uniform mat4 projectionViewMatrix;
 uniform mat4 matrixKirby;
-uniform mat3 nmatrixKirby;
+uniform mat4 nmatrixKirby;
 out vec3 shaderColor;
 out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
@@ -15,10 +16,11 @@ out float objectType;
 
 void main()
 {
-    gl_Position = matrixKirby * vec4(vertexPosition, 1.0f);
     shaderColor = vertexColor;
     shaderTexCoord = vertexTexCoord;
     worldSpacePosition = (matrixKirby * vec4(vertexPosition, 1.0f)).xyz;
-    worldSpaceNormal = normalize(nmatrixKirby * normalVector);
+    worldSpaceNormal = (nmatrixKirby * vec4(normalVector, 1.0f)).xyz;
     objectType = 0.0f;
+
+    gl_Position = projectionViewMatrix * vec4(worldSpacePosition, 1.0f);
 }

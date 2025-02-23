@@ -105029,26 +105029,19 @@ void render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // base matrix = multiplying projection matrix and view transform matrix
-    glm::mat4 baseMatrix;
+    glm::mat4 projectionViewMatrix;
 
     // calculate projection matrix
-    baseMatrix = glm::perspective(glm::radians(fov),
+    projectionViewMatrix = glm::perspective(glm::radians(fov),
                     (float) WINDOW_WIDTH / WINDOW_HEIGHT,
                     0.1f,
                     100.0f);
-    
-    // calculating view transform matrix
-    glm::mat4 viewTransform;
-    viewTransform = glm::lookAt(eyePosition, eyePosition + forwardVector, upVector);
+
+    // multiply projection matrix by view transform matrix
+    projectionViewMatrix *= glm::lookAt(eyePosition, eyePosition + forwardVector, upVector);;
 
     // have model matrix for normals
     glm::mat4 modelMatrix = glm::mat4(1.0f);
-
-    // ... enable cull face ...
-    glEnable(GL_CULL_FACE);
-        
-    // ... enable OpenGL's hidden surface removal ...
-    glEnable(GL_DEPTH_TEST); 
 
     // using our shader program for the first triangle...
     glUseProgram(shader1);
@@ -105058,6 +105051,10 @@ void render()
         
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
+
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader1, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
 
     // ... calculate matrix for first triangle ...
     glm::mat4 matrix1;
@@ -105069,22 +105066,22 @@ void render()
     nmatrix1 = glm::transpose(glm::inverse(matrix1));
     glm::mat3 nmatrix1_3x3 = glm::mat3(nmatrix1);
 
-    matrix1 = baseMatrix * viewTransform * matrix1;
+    //matrix1 = projectionViewMatrix * matrix1;
 
     glUniformMatrix4fv(glGetUniformLocation(shader1, "matrix1"),
             1, GL_FALSE, glm::value_ptr(matrix1));
     glUniformMatrix3fv(glGetUniformLocation(shader1, "nmatrix1"),
-            1, GL_FALSE, glm::value_ptr(nmatrix1_3x3));
+            1, GL_FALSE, glm::value_ptr(nmatrix1));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader1, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader1, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture0); 
-
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader1, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader1, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader1, "shaderTexture0"), 0);
@@ -105104,6 +105101,10 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader2, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+
     // ... calculate matrix for second triangle ...
     glm::mat4 matrix2;
     matrix2 = glm::translate(modelMatrix, glm::vec3(-0.5f, 1.5f, -0.2f));
@@ -105114,22 +105115,22 @@ void render()
     nmatrix2 = glm::transpose(glm::inverse(matrix2));
     glm::mat3 nmatrix2_3x3 = glm::mat3(nmatrix2);
 
-    matrix2 = baseMatrix * viewTransform * matrix2;
+    //matrix2 = projectionViewMatrix * matrix2;
 
     glUniformMatrix4fv(glGetUniformLocation(shader2, "matrix2"),
             1, GL_FALSE, glm::value_ptr(matrix2));
     glUniformMatrix3fv(glGetUniformLocation(shader2, "nmatrix2"),
-            1, GL_FALSE, glm::value_ptr(nmatrix2_3x3));
+            1, GL_FALSE, glm::value_ptr(nmatrix2));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader2, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader2, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
-
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader2, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader2, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader2, "shaderTexture0"), 0);
@@ -105148,6 +105149,10 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader3, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix3;
     matrix3 = glm::translate(modelMatrix, glm::vec3(-2.5f, 1.5f, -0.2f));
@@ -105158,22 +105163,22 @@ void render()
     nmatrix3 = glm::transpose(glm::inverse(matrix3));
     glm::mat3 nmatrix3_3x3 = glm::mat3(nmatrix3);
 
-    matrix3 = baseMatrix * viewTransform * matrix3;
+    //matrix3 = projectionViewMatrix * matrix3;
 
     glUniformMatrix4fv(glGetUniformLocation(shader3, "matrix3"),
             1, GL_FALSE, glm::value_ptr(matrix3));
     glUniformMatrix3fv(glGetUniformLocation(shader3, "nmatrix3"),
-            1, GL_FALSE, glm::value_ptr(nmatrix3_3x3));
+            1, GL_FALSE, glm::value_ptr(nmatrix3));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader3, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader3, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1);
-
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader3, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader3, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader3, "shaderTexture0"), 0);
@@ -105191,6 +105196,10 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader4, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix4;
     matrix4 = glm::translate(modelMatrix, glm::vec3(-3.5f, 0.9f, -0.2f));
@@ -105201,22 +105210,23 @@ void render()
     nmatrix4 = glm::transpose(glm::inverse(matrix4));
     glm::mat3 nmatrix4_3x3 = glm::mat3(nmatrix4);
 
-    matrix4 = baseMatrix * viewTransform * matrix4;
+    //matrix4 = projectionViewMatrix * matrix4;
 
     glUniformMatrix4fv(glGetUniformLocation(shader4, "matrix4"),
             1, GL_FALSE, glm::value_ptr(matrix4));
     glUniformMatrix3fv(glGetUniformLocation(shader4, "nmatrix4"),
-            1, GL_FALSE, glm::value_ptr(nmatrix4_3x3));
+            1, GL_FALSE, glm::value_ptr(nmatrix4));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader4, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader4, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1); 
 
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader4, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader4, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader4, "shaderTexture0"), 0);
 
@@ -105233,6 +105243,10 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader5, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix5;
     matrix5 = glm::translate(modelMatrix, glm::vec3(0.5f, 0.9f, -0.2f));
@@ -105243,22 +105257,22 @@ void render()
     nmatrix5 = glm::transpose(glm::inverse(matrix5));
     glm::mat3 nmatrix5_3x3 = glm::mat3(nmatrix5);
 
-    matrix5 = baseMatrix * viewTransform * matrix5;
+    //matrix5 = projectionViewMatrix * matrix5;
 
     glUniformMatrix4fv(glGetUniformLocation(shader5, "matrix5"),
             1, GL_FALSE, glm::value_ptr(matrix5));
     glUniformMatrix3fv(glGetUniformLocation(shader5, "nmatrix5"),
-            1, GL_FALSE, glm::value_ptr(nmatrix5_3x3));
+            1, GL_FALSE, glm::value_ptr(nmatrix5));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader5, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader5, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1); 
-
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader5, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader5, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));             
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader5, "shaderTexture0"), 0);
@@ -105276,6 +105290,10 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST);
 
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader6, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix6;
     matrix6 = glm::translate(modelMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
@@ -105286,22 +105304,23 @@ void render()
     nmatrix6 = glm::transpose(glm::inverse(matrix6));
     glm::mat3 nmatrix6_3x3 = glm::mat3(nmatrix6);
 
-    matrix6 = baseMatrix * viewTransform * matrix6;
+    //matrix6 = projectionViewMatrix * matrix6;
 
     glUniformMatrix4fv(glGetUniformLocation(shader6, "matrix6"),
         1, GL_FALSE, glm::value_ptr(matrix6));
     glUniformMatrix3fv(glGetUniformLocation(shader6, "nmatrix6"),
-        1, GL_FALSE, glm::value_ptr(nmatrix6_3x3));
+        1, GL_FALSE, glm::value_ptr(nmatrix6));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader6, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader6, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture2);
 
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader6, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader6, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader6, "shaderTexture0"), 0);
 
@@ -105318,6 +105337,10 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST);
 
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shader7, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
+
     // ... calculate matrix for third triangle ...
     glm::mat4 matrix7;
     matrix7 = glm::translate(modelMatrix, glm::vec3(-5.3f, -1.5f, -2.0f));
@@ -105328,22 +105351,22 @@ void render()
     nmatrix7 = glm::transpose(glm::inverse(matrix7));
     glm::mat3 nmatrix7_3x3 = glm::mat3(nmatrix7);
 
-    matrix7 = baseMatrix * viewTransform * matrix7;
+    //matrix7 = projectionViewMatrix * matrix7;
 
     glUniformMatrix4fv(glGetUniformLocation(shader7, "matrix7"),
         1, GL_FALSE, glm::value_ptr(matrix7));
     glUniformMatrix3fv(glGetUniformLocation(shader7, "nmatrix7"),
-        1, GL_FALSE, glm::value_ptr(nmatrix7_3x3));
+        1, GL_FALSE, glm::value_ptr(nmatrix7));
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shader7, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shader7, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture3);
-
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shader7, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shader7, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shader7, "shaderTexture0"), 0);
@@ -105356,10 +105379,14 @@ void render()
     glUseProgram(shaderKirby);
 
     // ... enable cull face ... this is to stop it from rendering when not facing the viewer
-    //glEnable(GL_CULL_FACE);
+    glEnable(GL_CULL_FACE);
         
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
+
+    // ... pass projection view matrix ...
+    glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "projectionViewMatrix"),
+    1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
 
     // ... timing settings
     const float pi = 3.14159265358979323846f;
@@ -105418,12 +105445,20 @@ void render()
     nmatrixKirby = glm::transpose(glm::inverse(matrixKirby));
     glm::mat3 nmatrixKirby_3x3 = glm::mat3(nmatrixKirby);
 
-    matrixKirby = baseMatrix * viewTransform * matrixKirby;
+    //matrixKirby = projectionViewMatrix * matrixKirby;
 
     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "matrixKirby"),
             1, GL_FALSE, glm::value_ptr(matrixKirby));
     glUniformMatrix3fv(glGetUniformLocation(shaderKirby, "nmatrixKirby"),
             1, GL_FALSE, glm::value_ptr(nmatrixKirby_3x3));
+
+
+    // pass light position
+    glUniform3f(glGetUniformLocation(shaderKirby, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+
+    // pass eye position
+    glUniform3f(glGetUniformLocation(shaderKirby, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
 
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
@@ -105434,12 +105469,6 @@ void render()
     else {
         glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture);
     }
-
-    // ... set up the light position...
-    glUniform3fv(glGetUniformLocation(shaderKirby, "lightPosition"),
-                 1, glm::value_ptr(lightPosition));
-    glUniform3fv(glGetUniformLocation(shaderKirby, "eyePosition"), 
-                 1, glm::value_ptr(eyePosition));
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shaderKirby, "shaderTexture0"), 0);
@@ -105579,10 +105608,14 @@ int main(int argc, char** argv)
                 eyePosition -= glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
             if (glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
                 eyePosition += glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
+            if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+                lightPosition.x += -0.05f; 
+            if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                lightPosition.x += 0.05f;
         
             
-            glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
-            glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
+            //glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
+            //glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
             // Light Controls
             // if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
