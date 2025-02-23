@@ -20,7 +20,7 @@ void main()
     shaderTexCoord = vertexTexCoord;
     worldSpacePosition = (matrix7 * vec4(vertexPosition, 1.0f)).xyz;
     worldSpaceNormal = (nmatrix7 * vec4(normalVector, 1.0f)).xyz;
-    objectType = 0.0f;
+    objectType = 1.0f;
 
     gl_Position = projectionViewMatrix * vec4(worldSpacePosition, 1.0f);
 }

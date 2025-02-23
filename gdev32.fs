@@ -41,7 +41,7 @@ void main()
     vec4 diffuseColor = dot(normalize(worldSpaceNormal), lightVector) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
     diffuseColor = max(diffuseColor, 0.0f);
 
-    vec4 ambientFactor = 1.0f * vec4(1.0, 1.0, 1.0, 0.0f);
+    vec4 ambientFactor = 0.48f * vec4(1.0, 1.0, 1.0, 0.0f);
 
     vec3 reflectionVector = reflect(-lightVector, normalize(worldSpaceNormal));
     float refDotEye = dot(reflectionVector, eyePosition - worldSpacePosition);
@@ -49,6 +49,13 @@ void main()
     vec4 specularLighting = pow(refDotEye, 2) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
 
     vec4 texColor = texture(shaderTexture0, shaderTexCoord);
-    finalColor = (diffuseColor + ambientFactor + specularLighting) * texColor * vec4(shaderColor, 1.0f);
+    finalColor = (diffuseColor + ambientFactor) * texColor * vec4(shaderColor, 1.0f);
 
+    if (objectType == 1.0f){
+        finalColor = (diffuseColor/10.0f + 1.0f) * texColor * vec4(shaderColor, 1.0f);
+    }
+
+    if (objectType == 2.0f){
+        finalColor = (diffuseColor + ambientFactor + specularLighting/16.0f) * texColor * vec4(shaderColor, 1.0f);
+    }
 }

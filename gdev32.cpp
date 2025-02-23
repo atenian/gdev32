@@ -104494,7 +104494,7 @@ float lastX = 640.0f / 2.0;
 float lastY = 360.0f / 2.0;
 
 // camera variables
-glm::vec3 lightPosition = glm::vec3(5.0f, 10.0f, 5.0f);
+glm::vec3 lightPosition = glm::vec3(0.0f, 16.0f, 10.0f);
 
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
@@ -105011,8 +105011,6 @@ bool setup()
     if (!kirbyFlyTexture)
         return false;
 
-    glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
-
     return true;
 }
 
@@ -105066,11 +105064,11 @@ void render()
     nmatrix1 = glm::transpose(glm::inverse(matrix1));
     glm::mat3 nmatrix1_3x3 = glm::mat3(nmatrix1);
 
-    //matrix1 = projectionViewMatrix * matrix1;
+    // matrix1 = projectionViewMatrix * matrix1;
 
     glUniformMatrix4fv(glGetUniformLocation(shader1, "matrix1"),
             1, GL_FALSE, glm::value_ptr(matrix1));
-    glUniformMatrix3fv(glGetUniformLocation(shader1, "nmatrix1"),
+    glUniformMatrix4fv(glGetUniformLocation(shader1, "nmatrix1"),
             1, GL_FALSE, glm::value_ptr(nmatrix1));
 
     // pass light position
@@ -105119,7 +105117,7 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shader2, "matrix2"),
             1, GL_FALSE, glm::value_ptr(matrix2));
-    glUniformMatrix3fv(glGetUniformLocation(shader2, "nmatrix2"),
+    glUniformMatrix4fv(glGetUniformLocation(shader2, "nmatrix2"),
             1, GL_FALSE, glm::value_ptr(nmatrix2));
 
     // pass light position
@@ -105167,7 +105165,7 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shader3, "matrix3"),
             1, GL_FALSE, glm::value_ptr(matrix3));
-    glUniformMatrix3fv(glGetUniformLocation(shader3, "nmatrix3"),
+    glUniformMatrix4fv(glGetUniformLocation(shader3, "nmatrix3"),
             1, GL_FALSE, glm::value_ptr(nmatrix3));
 
     // pass light position
@@ -105214,7 +105212,7 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shader4, "matrix4"),
             1, GL_FALSE, glm::value_ptr(matrix4));
-    glUniformMatrix3fv(glGetUniformLocation(shader4, "nmatrix4"),
+    glUniformMatrix4fv(glGetUniformLocation(shader4, "nmatrix4"),
             1, GL_FALSE, glm::value_ptr(nmatrix4));
 
     // pass light position
@@ -105261,7 +105259,7 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shader5, "matrix5"),
             1, GL_FALSE, glm::value_ptr(matrix5));
-    glUniformMatrix3fv(glGetUniformLocation(shader5, "nmatrix5"),
+    glUniformMatrix4fv(glGetUniformLocation(shader5, "nmatrix5"),
             1, GL_FALSE, glm::value_ptr(nmatrix5));
 
     // pass light position
@@ -105308,7 +105306,7 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shader6, "matrix6"),
         1, GL_FALSE, glm::value_ptr(matrix6));
-    glUniformMatrix3fv(glGetUniformLocation(shader6, "nmatrix6"),
+    glUniformMatrix4fv(glGetUniformLocation(shader6, "nmatrix6"),
         1, GL_FALSE, glm::value_ptr(nmatrix6));
 
     // pass light position
@@ -105355,7 +105353,7 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shader7, "matrix7"),
         1, GL_FALSE, glm::value_ptr(matrix7));
-    glUniformMatrix3fv(glGetUniformLocation(shader7, "nmatrix7"),
+    glUniformMatrix4fv(glGetUniformLocation(shader7, "nmatrix7"),
         1, GL_FALSE, glm::value_ptr(nmatrix7));
 
     // pass light position
@@ -105449,8 +105447,8 @@ void render()
 
     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "matrixKirby"),
             1, GL_FALSE, glm::value_ptr(matrixKirby));
-    glUniformMatrix3fv(glGetUniformLocation(shaderKirby, "nmatrixKirby"),
-            1, GL_FALSE, glm::value_ptr(nmatrixKirby_3x3));
+    glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "nmatrixKirby"),
+            1, GL_FALSE, glm::value_ptr(nmatrixKirby));
 
 
     // pass light position
@@ -105614,18 +105612,18 @@ int main(int argc, char** argv)
                 lightPosition.x += 0.05f;
         
             
-            //glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
-            //glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
+            glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
+            glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
             // Light Controls
-            // if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
-            //     lightPosition += cameraSpeed * lightForward;
-            // if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
-            //     lightPosition -= cameraSpeed * lightForward;
-            // if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
-            //     lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
-            // if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
-            //     lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+                lightPosition += cameraSpeed * lightForward;
+            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+                lightPosition -= cameraSpeed * lightForward;
+            if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+                lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+                lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
             
             // Camera Clamp
             eyePosition.x = std::max(-5.0f, std::min(3.0f, eyePosition.x));
