@@ -104495,6 +104495,13 @@ float lastY = 360.0f / 2.0;
 
 // camera variables
 glm::vec3 lightPosition = glm::vec3(0.0f, 16.0f, 10.0f);
+glm::vec3 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
+
+// spotlight stuff
+glm::vec3 lightDirection = glm::vec3(0.0f, 0.0f, -1.0f);  // Direction of the spotlight
+float cutOff = glm::cos(glm::radians(10.5f));         // Cutoff angle 
+float outerCutOff = glm::cos(glm::radians(20.5f));    // Outer cutoff angle 
+float spotIntensity = 1.0f;  // Intensity of the spotlight
 
 // called by the main function to do initial setup, such as uploading vertex
 // arrays, shader programs, etc.; returns true if successful, false otherwise
@@ -105050,6 +105057,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader1, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader1, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader1, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader1, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader1, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105073,6 +105086,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader1, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader1, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader1, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105099,6 +105113,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader2, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader2, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader2, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader2, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader2, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105122,6 +105142,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader2, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader2, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader2, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105147,6 +105168,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader3, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader3, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader3, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader3, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader3, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105170,6 +105197,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader3, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader3, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader3, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105194,6 +105222,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader4, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader4, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader4, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader4, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader4, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105217,6 +105251,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader4, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader4, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader4, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105241,6 +105276,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader5, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader5, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader5, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader5, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader5, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105264,6 +105305,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader5, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader5, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader5, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105288,6 +105330,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST);
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader6, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader6, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader6, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader6, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader6, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105311,6 +105359,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader6, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader6, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader6, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105335,6 +105384,12 @@ void render()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST);
 
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shader7, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shader7, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shader7, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shader7, "spotIntensity"), spotIntensity); // Intensity
+
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shader7, "projectionViewMatrix"),
     1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
@@ -105358,6 +105413,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shader7, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shader7, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shader7, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105381,6 +105437,12 @@ void render()
         
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
+
+    // Spotlight parameters
+    glUniform3f(glGetUniformLocation(shaderKirby, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+    glUniform1f(glGetUniformLocation(shaderKirby, "cutOff"), cutOff); // Cutoff
+    glUniform1f(glGetUniformLocation(shaderKirby, "outerCutOff"), outerCutOff); // Outer cutoff
+    glUniform1f(glGetUniformLocation(shaderKirby, "spotIntensity"), spotIntensity); // Intensity
 
     // ... pass projection view matrix ...
     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "projectionViewMatrix"),
@@ -105453,6 +105515,7 @@ void render()
 
     // pass light position
     glUniform3f(glGetUniformLocation(shaderKirby, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+    glUniform3f(glGetUniformLocation(shaderKirby, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
 
     // pass eye position
     glUniform3f(glGetUniformLocation(shaderKirby, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -105606,24 +105669,38 @@ int main(int argc, char** argv)
                 eyePosition -= glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
             if (glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
                 eyePosition += glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
+
+            //SpotLight Stuff
+            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+                spotLightPosition.y += cameraSpeed * -1.0f; 
+            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+                spotLightPosition.y += cameraSpeed * 1.0f;
             if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
-                lightPosition.x += -0.05f; 
+                spotLightPosition.x += cameraSpeed * -1.0f; 
             if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                lightPosition.x += 0.05f;
+                spotLightPosition.x += cameraSpeed * 1.0f;
+            if (glfwGetKey(pWindow, GLFW_KEY_I) == GLFW_PRESS)
+                lightDirection = glm::vec3(0.0f, 0.0f, -1.0f);
+            if (glfwGetKey(pWindow, GLFW_KEY_J) == GLFW_PRESS)
+                lightDirection = glm::vec3(0.0f, 0.0f, 1.0f);
+            if (glfwGetKey(pWindow, GLFW_KEY_K) == GLFW_PRESS)
+                lightDirection = glm::vec3(0.0f, 1.0f, 0.0f);
+            if (glfwGetKey(pWindow, GLFW_KEY_L) == GLFW_PRESS)
+                lightDirection = glm::vec3(0.0f, -1.0f, 0.0f);
         
             
             glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
             glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
             // Light Controls
-            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
-                lightPosition += cameraSpeed * lightForward;
-            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
-                lightPosition -= cameraSpeed * lightForward;
-            if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
-                lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
-            if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            //if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+                //lightPosition += cameraSpeed * lightForward;
+            //if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+                //lightPosition -= cameraSpeed * lightForward;
+            // if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+            //     lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
+            // if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
+            //     lightPosition += glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
             
             // Camera Clamp
             eyePosition.x = std::max(-5.0f, std::min(3.0f, eyePosition.x));
