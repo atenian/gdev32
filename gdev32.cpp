@@ -104499,8 +104499,10 @@ glm::vec3 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
 
 // spotlight stuff
 glm::vec3 lightDirection = glm::vec3(0.0f, 0.0f, -1.0f);  // Direction of the spotlight
-float cutOff = glm::cos(glm::radians(10.5f));         // Cutoff angle 
-float outerCutOff = glm::cos(glm::radians(20.5f));    // Outer cutoff angle 
+float cutOffValue = 10.0f;
+float outerCutOffValue = 20.0f;
+float cutOff = glm::cos(glm::radians(cutOffValue));         // Cutoff angle 
+float outerCutOff = glm::cos(glm::radians(outerCutOffValue));    // Outer cutoff angle 
 float spotIntensity = 1.0f;  // Intensity of the spotlight
 
 // called by the main function to do initial setup, such as uploading vertex
@@ -105032,6 +105034,10 @@ void render()
     // clear the whole frame
     glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    //spotlight
+    cutOff = glm::cos(glm::radians(cutOffValue));
+    outerCutOff = glm::cos(glm::radians(outerCutOffValue));
 
     // base matrix = multiplying projection matrix and view transform matrix
     glm::mat4 projectionViewMatrix;
@@ -105670,24 +105676,53 @@ int main(int argc, char** argv)
             if (glfwGetKey(pWindow, GLFW_KEY_D) == GLFW_PRESS)
                 eyePosition += glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
 
-            //SpotLight Stuff
-            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
-                spotLightPosition.y += cameraSpeed * -1.0f; 
-            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
-                spotLightPosition.y += cameraSpeed * 1.0f;
-            if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
+            //SpotLight Controls
+            if (glfwGetKey(pWindow, GLFW_KEY_U) == GLFW_PRESS)
                 spotLightPosition.x += cameraSpeed * -1.0f; 
-            if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
-                spotLightPosition.x += cameraSpeed * 1.0f;
             if (glfwGetKey(pWindow, GLFW_KEY_I) == GLFW_PRESS)
-                lightDirection = glm::vec3(0.0f, 0.0f, -1.0f);
+                spotLightPosition.x += cameraSpeed * 1.0f;
             if (glfwGetKey(pWindow, GLFW_KEY_J) == GLFW_PRESS)
-                lightDirection = glm::vec3(0.0f, 0.0f, 1.0f);
+                spotLightPosition.y += cameraSpeed * -1.0f; 
             if (glfwGetKey(pWindow, GLFW_KEY_K) == GLFW_PRESS)
+                spotLightPosition.y += cameraSpeed * 1.0f;
+            if (glfwGetKey(pWindow, GLFW_KEY_N) == GLFW_PRESS)
+                spotLightPosition.z += cameraSpeed * -1.0f; 
+            if (glfwGetKey(pWindow, GLFW_KEY_M) == GLFW_PRESS)
+                spotLightPosition.z += cameraSpeed * 1.0f;
+
+            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS){
+                cutOffValue += cameraSpeed * 1.0f;
+                outerCutOffValue += cameraSpeed * 2.0f;
+            } 
+            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS){
+                cutOffValue += cameraSpeed * -1.0f;
+                outerCutOffValue += cameraSpeed * -2.0f;
+            }
+
+            if (glfwGetKey(pWindow, GLFW_KEY_1) == GLFW_PRESS){
+                spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
+                lightDirection = glm::vec3(0.0f, 0.0f, -1.0f);
+            }
+            if (glfwGetKey(pWindow, GLFW_KEY_2) == GLFW_PRESS){
+                spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
+                lightDirection = glm::vec3(0.0f, 0.0f, 1.0f);
+            }
+            if (glfwGetKey(pWindow, GLFW_KEY_3) == GLFW_PRESS){
+                spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
                 lightDirection = glm::vec3(0.0f, 1.0f, 0.0f);
-            if (glfwGetKey(pWindow, GLFW_KEY_L) == GLFW_PRESS)
+            }
+            if (glfwGetKey(pWindow, GLFW_KEY_4) == GLFW_PRESS){
+                spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
                 lightDirection = glm::vec3(0.0f, -1.0f, 0.0f);
-        
+            }
+            if (glfwGetKey(pWindow, GLFW_KEY_5) == GLFW_PRESS){
+                spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
+                lightDirection = glm::vec3(1.0f, 0.0f, 0.0f);
+            }
+            if (glfwGetKey(pWindow, GLFW_KEY_6) == GLFW_PRESS){
+                spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
+                lightDirection = glm::vec3(-1.0f, 0.0f, 0.0f);
+            }
             
             glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
             glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
