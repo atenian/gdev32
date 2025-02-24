@@ -69,7 +69,7 @@ void main()
     // Spotlight calculations
     float theta = dot(spotLightVector, normalize(-lightDirection));
     float epsilon = cutOff - outerCutOff;
-    float intensity = clamp((theta - outerCutOff) / epsilon, 0.0, 1.0);
+    float intensity = clamp((theta - outerCutOff) / epsilon, 0.0, 1.0) * spotIntensity;
 
     // Apply the spotlight effect
     spotDiffuseColor *= intensity;
@@ -82,13 +82,14 @@ void main()
     vec4 finalSpecularLighting = specularLighting + spotSpecularLighting; 
     
     vec4 texColor = texture(shaderTexture0, shaderTexCoord);
-    finalColor = (finalDiffuseColor + finalAmbientFactor) * texColor * vec4(shaderColor, 1.0f);
 
-    // if (objectType == 1.0f){
-    //     finalColor = (diffuseColor/10.0f + 1.0f) * texColor * vec4(shaderColor, 1.0f);
-    // }
-
-    // if (objectType == 2.0f){
-    //     finalColor = (diffuseColor + ambientFactor + specularLighting/16.0f) * texColor * vec4(shaderColor, 1.0f);
-    // }
+    if (objectType == 1.0f){
+        finalColor = (finalAmbientFactor / 4.0f + 0.75f) * texColor * vec4(shaderColor, 1.0f);
+    }
+    else if (objectType == 2.0f){
+        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 24.0f) * texColor * vec4(shaderColor, 1.0f);
+    }
+    else {
+        finalColor = (finalDiffuseColor + finalAmbientFactor) * texColor * vec4(shaderColor, 1.0f);
+    }
 }

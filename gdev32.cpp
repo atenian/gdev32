@@ -1,14 +1,27 @@
 /******************************************************************************
- * This demo draws a triangle by defining its vertices in 3 dimensions
- * (the 3rd dimension is currently ignored and is just set to 0).
+ * This demo adds lighting to the current project scene.
+ * In particular, we've added a controllable point light and spotlight.
+ * Additionally, we've added normal maps and specular maps.
  *
- * The drawing is accomplished by:
- * - Uploading the vertices to the GPU using a Vertex Buffer Object (VBO).
- * - Specifying the vertices' format using a Vertex Array Object (VAO).
- * - Using a GLSL shader program (consisting of a simple vertex shader and a
- *   simple fragment shader) to actually draw the vertices as a triangle.
+ * These are the controls available to the user.
+ * - WASD to move the camera
+ * - Mouse to point camera direction
+ * - Arrow Keys to move point light left-and-right and forwards-backwards
+ * - JL to move spotlight left and right
+ * - IK to move spotlight up and down
+ * - OP to move spotlight forwards and backwards
+ * - YH to make spotlight bigger or smaller
+ * - TG to make spotlight inner radius softer or harder
+ * - NM to make spotlight intensity lower or higher
+ * - Number Keys to change spotlight direction:
+        1 - spotlight to front
+        2 - spotlight to back
+        3 - spotlight to up
+        4 - spotlight to down
+        5 - spotlight to left
+        6 - spotlight to right
  *
- * Happy hacking! - eric
+ * Aragoza, Gomez, Supan
  *****************************************************************************/
 
 #include <iostream>
@@ -104499,7 +104512,7 @@ glm::vec3 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
 
 // spotlight stuff
 glm::vec3 lightDirection = glm::vec3(0.0f, 0.0f, -1.0f);  // Direction of the spotlight
-float cutOffValue = 10.0f;
+float cutOffValue = 15.0f;
 float outerCutOffValue = 20.0f;
 float cutOff = glm::cos(glm::radians(cutOffValue));         // Cutoff angle 
 float outerCutOff = glm::cos(glm::radians(outerCutOffValue));    // Outer cutoff angle 
@@ -105677,26 +105690,46 @@ int main(int argc, char** argv)
                 eyePosition += glm::normalize(glm::cross(forwardVector, upVector)) * cameraSpeed;
 
             //SpotLight Controls
-            if (glfwGetKey(pWindow, GLFW_KEY_U) == GLFW_PRESS)
-                spotLightPosition.x += cameraSpeed * -1.0f; 
-            if (glfwGetKey(pWindow, GLFW_KEY_I) == GLFW_PRESS)
-                spotLightPosition.x += cameraSpeed * 1.0f;
             if (glfwGetKey(pWindow, GLFW_KEY_J) == GLFW_PRESS)
-                spotLightPosition.y += cameraSpeed * -1.0f; 
+                spotLightPosition.x += cameraSpeed * -1.0f; 
+            if (glfwGetKey(pWindow, GLFW_KEY_L) == GLFW_PRESS)
+                spotLightPosition.x += cameraSpeed * 1.0f;
             if (glfwGetKey(pWindow, GLFW_KEY_K) == GLFW_PRESS)
+                spotLightPosition.y += cameraSpeed * -1.0f; 
+            if (glfwGetKey(pWindow, GLFW_KEY_I) == GLFW_PRESS)
                 spotLightPosition.y += cameraSpeed * 1.0f;
-            if (glfwGetKey(pWindow, GLFW_KEY_N) == GLFW_PRESS)
+            if (glfwGetKey(pWindow, GLFW_KEY_O) == GLFW_PRESS)
                 spotLightPosition.z += cameraSpeed * -1.0f; 
-            if (glfwGetKey(pWindow, GLFW_KEY_M) == GLFW_PRESS)
+            if (glfwGetKey(pWindow, GLFW_KEY_P) == GLFW_PRESS)
                 spotLightPosition.z += cameraSpeed * 1.0f;
 
-            if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS){
+            if (glfwGetKey(pWindow, GLFW_KEY_Y) == GLFW_PRESS){
                 cutOffValue += cameraSpeed * 1.0f;
-                outerCutOffValue += cameraSpeed * 2.0f;
+                outerCutOffValue += cameraSpeed * 1.0f;
+                if (cutOffValue >= outerCutOffValue) cutOffValue = outerCutOffValue;
             } 
-            if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS){
+            if (glfwGetKey(pWindow, GLFW_KEY_H) == GLFW_PRESS){
                 cutOffValue += cameraSpeed * -1.0f;
-                outerCutOffValue += cameraSpeed * -2.0f;
+                outerCutOffValue += cameraSpeed * -1.0f;
+                if (cutOffValue >= outerCutOffValue) cutOffValue = outerCutOffValue;
+            }
+
+            if (glfwGetKey(pWindow, GLFW_KEY_T) == GLFW_PRESS){
+                cutOffValue += cameraSpeed * 1.0f;
+                if (cutOffValue >= outerCutOffValue) cutOffValue = outerCutOffValue;
+            } 
+            if (glfwGetKey(pWindow, GLFW_KEY_G) == GLFW_PRESS){
+                cutOffValue += cameraSpeed * -1.0f;
+                if (cutOffValue <= 0.0f) cutOffValue = 0.0f;
+            }
+
+            if (glfwGetKey(pWindow, GLFW_KEY_N) == GLFW_PRESS){
+                spotIntensity -= 0.02f;
+                if (spotIntensity <= 0.0f) spotIntensity = 0.0f;
+            } 
+            if (glfwGetKey(pWindow, GLFW_KEY_M) == GLFW_PRESS){
+                spotIntensity += 0.02f;
+                if (spotIntensity >= 4.8f) spotIntensity = 4.8f;
             }
 
             if (glfwGetKey(pWindow, GLFW_KEY_1) == GLFW_PRESS){
@@ -105715,11 +105748,11 @@ int main(int argc, char** argv)
                 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
                 lightDirection = glm::vec3(0.0f, -1.0f, 0.0f);
             }
-            if (glfwGetKey(pWindow, GLFW_KEY_5) == GLFW_PRESS){
+            if (glfwGetKey(pWindow, GLFW_KEY_6) == GLFW_PRESS){
                 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
                 lightDirection = glm::vec3(1.0f, 0.0f, 0.0f);
             }
-            if (glfwGetKey(pWindow, GLFW_KEY_6) == GLFW_PRESS){
+            if (glfwGetKey(pWindow, GLFW_KEY_5) == GLFW_PRESS){
                 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
                 lightDirection = glm::vec3(-1.0f, 0.0f, 0.0f);
             }
@@ -105728,10 +105761,10 @@ int main(int argc, char** argv)
             glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
             // Light Controls
-            //if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
-                //lightPosition += cameraSpeed * lightForward;
-            //if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
-                //lightPosition -= cameraSpeed * lightForward;
+            // if (glfwGetKey(pWindow, GLFW_KEY_UP) == GLFW_PRESS)
+            //     lightPosition += cameraSpeed * lightForward;
+            // if (glfwGetKey(pWindow, GLFW_KEY_DOWN) == GLFW_PRESS)
+            //     lightPosition -= cameraSpeed * lightForward;
             // if (glfwGetKey(pWindow, GLFW_KEY_LEFT) == GLFW_PRESS)
             //     lightPosition -= glm::normalize(glm::cross(lightForward, lightUp)) * cameraSpeed;
             // if (glfwGetKey(pWindow, GLFW_KEY_RIGHT) == GLFW_PRESS)
