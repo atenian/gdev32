@@ -30,7 +30,7 @@ void main()
     vec4 specularIntensity = texture(specularMap, shaderTexCoord);
     texNormal = normalize(texNormal * 2.0f - 1.0f);
     vec3 normalVector = normalize(shaderTBN * texNormal);
-    float specularPower = 32.0f;
+    float specularPower = 2.0f;
 
     // constant properties for light
     vec3 lightVector = normalize(lightPosition - worldSpacePosition);
@@ -41,7 +41,7 @@ void main()
     else {
         diffuseColor = max(dot(normalize(worldSpaceNormal), lightVector), 0.0f) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
     }
-    //vec4 diffuseColor = max(dot(normalize(worldSpaceNormal), lightVector), 0.0f) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
+
     diffuseColor = max(diffuseColor, 0.0f);
 
     vec4 ambientFactor = 1.0f * vec4(1.0, 1.0, 1.0, 0.0f);
@@ -66,7 +66,7 @@ void main()
     // Spotlight calculations
     float theta = dot(spotLightVector, normalize(-lightDirection));
     float epsilon = cutOff - outerCutOff;
-    float intensity = clamp((theta - outerCutOff) / epsilon, 0.0, 1.0) * spotIntensity;
+    float intensity = clamp((theta - outerCutOff) / epsilon, 0.0, 1.0) * spotIntensity / 0.5f;
 
     // Apply the spotlight effect
     spotDiffuseColor *= intensity;
@@ -78,14 +78,14 @@ void main()
     vec4 finalAmbientFactor = ambientFactor + spotAmbientFactor;
     vec4 finalSpecularLighting = specularLighting + spotSpecularLighting; 
 
-    // if (objectType == 1.0f){
-    //     finalColor = (finalAmbientFactor / 4.0f + 0.75f) * texColor * vec4(shaderColor, 1.0f);
-    // }
+    if (objectType == 1.0f){
+        finalColor = 1.0f * texColor * vec4(shaderColor, 1.0f);
+    }
     if (objectType == 2.0f){
-        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 24.0f) * texColor * vec4(shaderColor, 1.0f);
+        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 480.0f) * texColor * vec4(shaderColor, 1.0f);
     }
     else {
         //finalColor = (finalDiffuseColor + finalAmbientFactor) * texColor * vec4(shaderColor, 1.0f);
-        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting) * texColor * vec4(shaderColor, 1.0f);
+        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 690.0f) * texColor * vec4(shaderColor, 1.0f);
     }
 }
