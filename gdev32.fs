@@ -79,12 +79,12 @@ void main()
     vec4 finalSpecularLighting = specularLighting + spotSpecularLighting; 
 
     if (objectType == 1.0f){
-        finalColor = ((finalDiffuseColor + finalAmbientFactor) * 0.48f + 0.52f) * texColor * vec4(shaderColor, 1.0f);
+        finalColor = ((finalDiffuseColor + finalAmbientFactor) * 0.36f + 0.64f) * texColor * vec4(shaderColor, 1.0f);
     }
     else if (objectType == 2.0f){
-        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 480.0f) * texColor * vec4(shaderColor, 1.0f);
+        finalColor = (finalDiffuseColor * 1.0f + finalAmbientFactor / 2.0f + finalSpecularLighting / 8.0f) * texColor * vec4(shaderColor, 1.0f);
     }
     else {
-        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 690.0f) * texColor * vec4(shaderColor, 1.0f);
+        finalColor = (finalDiffuseColor * 1.0f + finalAmbientFactor / 2.0f + finalSpecularLighting / 24.0f) * texColor * vec4(shaderColor, 1.0f);
     }
 }
