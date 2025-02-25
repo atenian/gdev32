@@ -104480,12 +104480,12 @@ GLuint eboKirbyFly;
 
 // textures
 GLuint bgtexture;   // background texture
-GLuint texture0[2];    // first texture - main 
-GLuint texture1[2];    // second texture - small 
-GLuint texture2[2];    // third texture - background
-GLuint texture3[2];    // third texture - background clouds
-GLuint kirbyTexture[2]; // kirby texture
-GLuint kirbyFlyTexture[2];
+GLuint texture0[3];    // first texture - main 
+GLuint texture1[3];    // second texture - small 
+GLuint texture2[3];    // third texture - background
+GLuint texture3[3];    // third texture - background clouds
+GLuint kirbyTexture[3]; // kirby texture
+GLuint kirbyFlyTexture[3];
 
 //glm::vec3 eyePosition, forwardVector, upVector; // parameters of lookAt function
 glm::vec3 eyePosition = glm::vec3(-1.0f, 1.0f, 3.5f);
@@ -105048,6 +105048,19 @@ bool setup()
     texture0[1] = gdevLoadTexture("grass-normal.png", GL_REPEAT, true, true);
     if (! texture0[1])
         return false;
+    texture0[2] = gdevLoadTexture("grass-spec.png", GL_REPEAT, true, true);
+    if (! texture0[2])
+        return false;
+    
+    // texture0[0] = gdevLoadTexture("demo5.png", GL_REPEAT, true, true);
+    // if (! texture0[0])
+    //     return false;
+    // texture0[1] = gdevLoadTexture("demo5n.png", GL_REPEAT, true, true);
+    // if (! texture0[1])
+    //     return false;
+    // texture0[2] = gdevLoadTexture("demo5grayscale.png", GL_REPEAT, true, true);
+    // if (! texture0[2])
+    //     return false;
 
     // load second texture
     texture1[0] = gdevLoadTexture("wood.jpg", GL_REPEAT, true, true);
@@ -105056,6 +105069,19 @@ bool setup()
     texture1[1] = gdevLoadTexture("wood-normal.jpg", GL_REPEAT, true, true);
     if (! texture1[1])
         return false;
+    texture1[2] = gdevLoadTexture("wood-spec.png", GL_REPEAT, true, true);
+    if (! texture1[2])
+        return false;
+
+    // texture1[0] = gdevLoadTexture("demo5.png", GL_REPEAT, true, true);
+    // if (! texture1[0])
+    //     return false;
+    // texture1[1] = gdevLoadTexture("demo5n.png", GL_REPEAT, true, true);
+    // if (! texture1[1])
+    //     return false;
+    // texture1[2] = gdevLoadTexture("demo5grayscale.png", GL_REPEAT, true, true);
+    // if (! texture1[2])
+    //     return false;
     
 
     // load third texture
@@ -105065,6 +105091,9 @@ bool setup()
     texture2[1] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
     if (! texture2[1])
         return false;
+    texture2[2] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
+    if (! texture2[2])
+        return false;
 
     // load fourth texture
     texture3[0] = gdevLoadTexture("skybox.png", GL_REPEAT, true, true);
@@ -105072,6 +105101,9 @@ bool setup()
         return false;
     texture3[1] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
     if (! texture3[1])
+        return false;
+    texture3[2] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
+    if (! texture3[2])
         return false;
 
     // load kirby texture
@@ -105081,6 +105113,9 @@ bool setup()
     kirbyTexture[1] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
     if (! kirbyTexture[1])
         return false;
+    kirbyTexture[2] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
+    if (! kirbyTexture[2])
+        return false;
 
     // load kirby texture
     kirbyFlyTexture[0] = gdevLoadTexture("kirby-jump.png", GL_REPEAT, true, true);
@@ -105088,6 +105123,9 @@ bool setup()
         return false;
     kirbyFlyTexture[1] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
     if (! kirbyFlyTexture[1])
+            return false;
+    kirbyFlyTexture[2] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
+    if (! kirbyFlyTexture[2])
             return false;
 
     return true;
@@ -105128,6 +105166,7 @@ void render()
     glUseProgram(shader1);
     glUniform1i(glGetUniformLocation(shader1, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader1, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader1, "specularMap"), 2);
 
 
     // ... enable cull face ...
@@ -105173,7 +105212,9 @@ void render()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture0[0]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture0[1]);  
+    glBindTexture(GL_TEXTURE_2D, texture0[1]);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture0[2]);  
 
     // ... draw our triangles
     glBindVertexArray(vao1);
@@ -105184,6 +105225,7 @@ void render()
     glUseProgram(shader2);
     glUniform1i(glGetUniformLocation(shader2, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader2, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader2, "specularMap"),  2);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105228,6 +105270,8 @@ void render()
     glBindTexture(GL_TEXTURE_2D, texture1[0]);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, texture1[1]);  
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture1[2]);
 
     // ... draw our triangles
     glBindVertexArray(vao2);
@@ -105238,6 +105282,7 @@ void render()
     glUseProgram(shader3);
     glUniform1i(glGetUniformLocation(shader3, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader3, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader3, "specularMap"),  2);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105280,7 +105325,9 @@ void render()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1[0]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture1[1]);  
+    glBindTexture(GL_TEXTURE_2D, texture1[1]);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture1[2]);  
 
     // ... draw our triangles
     glBindVertexArray(vao3);
@@ -105290,6 +105337,7 @@ void render()
     glUseProgram(shader4);
     glUniform1i(glGetUniformLocation(shader4, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader4, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader4, "specularMap"),  2);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105332,7 +105380,9 @@ void render()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture1[0]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture1[1]);  
+    glBindTexture(GL_TEXTURE_2D, texture1[1]);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture1[2]);  
 
     // ... draw our triangles
     glBindVertexArray(vao4);
@@ -105342,6 +105392,7 @@ void render()
     glUseProgram(shader5);
     glUniform1i(glGetUniformLocation(shader5, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader5, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader5, "specularMap"),  2);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105385,6 +105436,8 @@ void render()
     glBindTexture(GL_TEXTURE_2D, texture1[0]);
     glActiveTexture(GL_TEXTURE1);
     glBindTexture(GL_TEXTURE_2D, texture1[1]);  
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture1[2]);
 
     // ... draw our triangles
     glBindVertexArray(vao5);
@@ -105394,6 +105447,7 @@ void render()
     glUseProgram(shader6);
     glUniform1i(glGetUniformLocation(shader6, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader6, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader6, "specularMap"),  2);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105436,7 +105490,9 @@ void render()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture2[0]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture2[1]);  
+    glBindTexture(GL_TEXTURE_2D, texture2[1]);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture2[2]);  
 
     // ... draw our triangles
     glBindVertexArray(vao6);
@@ -105446,6 +105502,7 @@ void render()
     glUseProgram(shader7);
     glUniform1i(glGetUniformLocation(shader7, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shader7, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shader7, "specularMap"),  2);
 
     // ... enable cull face ...
     glEnable(GL_CULL_FACE);
@@ -105488,7 +105545,9 @@ void render()
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, texture3[0]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture3[1]);  
+    glBindTexture(GL_TEXTURE_2D, texture3[1]);
+    glActiveTexture(GL_TEXTURE2);
+    glBindTexture(GL_TEXTURE_2D, texture3[2]);  
 
     // ... draw our triangles
     glBindVertexArray(vao7);
@@ -105498,6 +105557,7 @@ void render()
     glUseProgram(shaderKirby);
     glUniform1i(glGetUniformLocation(shaderKirby, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shaderKirby, "normalMap"),  1);
+    glUniform1i(glGetUniformLocation(shaderKirby, "specularMap"),  2);
 
     // ... enable cull face ... this is to stop it from rendering when not facing the viewer
     glEnable(GL_CULL_FACE);
@@ -105590,18 +105650,23 @@ void render()
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, kirbyTexture[0]);
         glActiveTexture(GL_TEXTURE1);
-        glBindTexture(GL_TEXTURE_2D, kirbyTexture[1]);  
+        glBindTexture(GL_TEXTURE_2D, kirbyTexture[1]);
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, kirbyTexture[2]);  
     }
     else {
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[0]);
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[1]);  
+        glActiveTexture(GL_TEXTURE2);
+        glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[2]);
     }
 
     // ... connect each texture unit to a sampler2D in the fragment shader ...
     glUniform1i(glGetUniformLocation(shaderKirby, "diffuseMap"), 0);
     glUniform1i(glGetUniformLocation(shaderKirby, "normalMap"), 1);
+    glUniform1i(glGetUniformLocation(shaderKirby, "specularMap"), 2);
 
     // ... draw our triangles
     if (timer >= 0){

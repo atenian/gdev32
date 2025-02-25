@@ -12,6 +12,7 @@ uniform vec3 lightPosition;
 uniform vec3 spotLightPosition;
 uniform sampler2D diffuseMap;
 uniform sampler2D normalMap;
+uniform sampler2D specularMap;
 
 // Spotlight parameters
 uniform vec3 lightDirection;  // Direction of the spotlight
@@ -26,8 +27,10 @@ void main()
     // setting up textures
     vec4 texColor = texture(diffuseMap, shaderTexCoord);
     vec3 texNormal = vec3(texture(normalMap, shaderTexCoord));
+    vec4 specularIntensity = texture(specularMap, shaderTexCoord);
     texNormal = normalize(texNormal * 2.0f - 1.0f);
     vec3 normalVector = normalize(shaderTBN * texNormal);
+    float specularPower = 32.0f;
 
     // constant properties for light
     vec3 lightVector = normalize(lightPosition - worldSpacePosition);
@@ -41,12 +44,12 @@ void main()
     //vec4 diffuseColor = max(dot(normalize(worldSpaceNormal), lightVector), 0.0f) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
     diffuseColor = max(diffuseColor, 0.0f);
 
-    vec4 ambientFactor = 0.48f * vec4(1.0, 1.0, 1.0, 0.0f);
+    vec4 ambientFactor = 1.0f * vec4(1.0, 1.0, 1.0, 0.0f);
 
     vec3 reflectionVector = reflect(-lightVector, normalize(worldSpaceNormal));
     float refDotEye = dot(reflectionVector, eyePosition - worldSpacePosition);
     refDotEye = max(refDotEye, 0.0f);
-    vec4 specularLighting = pow(refDotEye, 2) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
+    vec4 specularLighting = pow(refDotEye, specularPower) * vec4(1.0f, 1.0f, 1.0f, 0.0f) * specularIntensity;
 
     // Old stuff
     vec3 spotLightVector = normalize(spotLightPosition - worldSpacePosition);
@@ -58,7 +61,7 @@ void main()
     vec3 spotReflectionVector = reflect(-spotLightVector, normalize(worldSpaceNormal));
     float spotRefDotEye = dot(spotReflectionVector, eyePosition - worldSpacePosition);
     spotRefDotEye = max(spotRefDotEye, 0.0f);
-    vec4 spotSpecularLighting = pow(spotRefDotEye, 2) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
+    vec4 spotSpecularLighting = pow(spotRefDotEye, specularPower) * vec4(1.0f, 1.0f, 1.0f, 0.0f) * specularIntensity;
 
     // Spotlight calculations
     float theta = dot(spotLightVector, normalize(-lightDirection));
@@ -82,6 +85,7 @@ void main()
         finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 24.0f) * texColor * vec4(shaderColor, 1.0f);
     }
     else {
-        finalColor = (finalDiffuseColor + finalAmbientFactor) * texColor * vec4(shaderColor, 1.0f);
+        //finalColor = (finalDiffuseColor + finalAmbientFactor) * texColor * vec4(shaderColor, 1.0f);
+        finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting) * texColor * vec4(shaderColor, 1.0f);
     }
 }
