@@ -20,7 +20,6 @@
         4 - spotlight to down
         5 - spotlight to left
         6 - spotlight to right
- * - Spacebar to toggle automatic spotlight tracking on Kirby
  *
  * Aragoza, Gomez, Supan
  *****************************************************************************/
@@ -209724,7 +209723,7 @@ bool setup()
     kirbyTexture[0] = gdevLoadTexture("kirby.png", GL_REPEAT, true, true);
     if (!kirbyTexture[0])
         return false;
-    kirbyTexture[1] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
+    kirbyTexture[1] = gdevLoadTexture("kirbyn.png", GL_REPEAT, true, true);
     if (! kirbyTexture[1])
         return false;
     kirbyTexture[2] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
@@ -209735,7 +209734,7 @@ bool setup()
     kirbyFlyTexture[0] = gdevLoadTexture("kirby-jump.png", GL_REPEAT, true, true);
     if (!kirbyFlyTexture[0])
         return false;
-    kirbyFlyTexture[1] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);
+    kirbyFlyTexture[1] = gdevLoadTexture("kirbyn-jump.png", GL_REPEAT, true, true);
     if (! kirbyFlyTexture[1])
             return false;
     kirbyFlyTexture[2] = gdevLoadTexture("blank.png", GL_REPEAT, true, true);

@@ -35,7 +35,7 @@ void main()
     // constant properties for light
     vec3 lightVector = normalize(lightPosition - worldSpacePosition);
     vec4 diffuseColor;
-    if (objectType == -1.0f){
+    if (objectType != 1.0f){
         diffuseColor = max(dot(normalVector, lightVector), 0.0f) * vec4(1.0f, 1.0f, 1.0f, 0.0f);
     }
     else {
@@ -79,13 +79,12 @@ void main()
     vec4 finalSpecularLighting = specularLighting + spotSpecularLighting; 
 
     if (objectType == 1.0f){
-        finalColor = 1.0f * texColor * vec4(shaderColor, 1.0f);
+        finalColor = ((finalDiffuseColor + finalAmbientFactor) * 0.48f + 0.52f) * texColor * vec4(shaderColor, 1.0f);
     }
-    if (objectType == 2.0f){
+    else if (objectType == 2.0f){
         finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 480.0f) * texColor * vec4(shaderColor, 1.0f);
     }
     else {
-        //finalColor = (finalDiffuseColor + finalAmbientFactor) * texColor * vec4(shaderColor, 1.0f);
         finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 690.0f) * texColor * vec4(shaderColor, 1.0f);
     }
 }
