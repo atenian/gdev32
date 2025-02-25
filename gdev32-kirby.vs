@@ -13,13 +13,17 @@ out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
 out vec3 worldSpaceNormal;
 out float objectType;
+out mat3 shaderTBN;
 
 void main()
 {
     shaderColor = vertexColor;
     shaderTexCoord = vertexTexCoord;
     worldSpacePosition = (matrixKirby * vec4(vertexPosition, 1.0f)).xyz;
-    worldSpaceNormal = (nmatrixKirby * vec4(normalVector, 1.0f)).xyz;
+    worldSpaceNormal = normalize(nmatrixKirby * vec4(normalVector, 1.0f)).xyz;
+
+    mat3 shaderTBN = mat3(1.0);
+
     objectType = 2.0f;
 
     gl_Position = projectionViewMatrix * vec4(worldSpacePosition, 1.0f);
