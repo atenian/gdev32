@@ -75,10 +75,10 @@ void main()
     vec4 finalAmbientFactor = ambientFactor + spotAmbientFactor;
     vec4 finalSpecularLighting = specularLighting + spotSpecularLighting; 
 
-    if (objectType == 1.0f){
-        finalColor = (finalAmbientFactor / 4.0f + 0.75f) * texColor * vec4(shaderColor, 1.0f);
-    }
-    else if (objectType == 2.0f){
+    // if (objectType == 1.0f){
+    //     finalColor = (finalAmbientFactor / 4.0f + 0.75f) * texColor * vec4(shaderColor, 1.0f);
+    // }
+    if (objectType == 2.0f){
         finalColor = (finalDiffuseColor + finalAmbientFactor + finalSpecularLighting / 24.0f) * texColor * vec4(shaderColor, 1.0f);
     }
     else {
