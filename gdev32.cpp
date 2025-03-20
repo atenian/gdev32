@@ -209151,7 +209151,586 @@
  float cutOff = glm::cos(glm::radians(cutOffValue));         // Cutoff angle 
  float outerCutOff = glm::cos(glm::radians(outerCutOffValue));    // Outer cutoff angle 
  float spotIntensity = 0.36f;  // Intensity of the spotlight
+
+ ///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+// For mainVertices (vao1 and vbo1)
+GLuint shadowMapFbo1;      // shadow map framebuffer object
+GLuint shadowMapTexture1;  // shadow map texture
+GLuint shadowMapShader1;   // shadow map shader
+
+bool setupShadowMap1()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFbo1);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo1);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTexture1);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexture1);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexture1, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShader1 = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShader1)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMap1()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo1);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShader1);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(lightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader1, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    glm::mat4 modelTransform = glm::mat4(1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader1, "modelTransform"),
+                       1, GL_FALSE, glm::value_ptr(modelTransform));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao1);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (14 * sizeof(float)));
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
+
+ ///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+// For Vertices (vao2-5 and vbo2-5)
+GLuint shadowMapFbo2;      // shadow map framebuffer object
+GLuint shadowMapTexture2;  // shadow map texture
+GLuint shadowMapShader2;   // shadow map shader
+
+bool setupShadowMap2()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFbo2);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo2);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTexture2);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexture2);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexture2, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShader2 = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShader2)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMap2()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo2);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShader2);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(lightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader2, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    glm::mat4 modelTransform = glm::mat4(1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader2, "modelTransform"),
+                       1, GL_FALSE, glm::value_ptr(modelTransform));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao2);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+
+    glBindVertexArray(vao3);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+
+    glBindVertexArray(vao4);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+
+    glBindVertexArray(vao5);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
+
+ ///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+// For backgroundVertices (vao6 and vbo6)
+GLuint shadowMapFbo3;      // shadow map framebuffer object
+GLuint shadowMapTexture3;  // shadow map texture
+GLuint shadowMapShader3;   // shadow map shader
+
+bool setupShadowMap3()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFbo3);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo3);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTexture3);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexture3);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexture3, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShader3 = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShader3)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMap3()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo3);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShader3);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(lightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader3, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    glm::mat4 modelTransform = glm::mat4(1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader3, "modelTransform"),
+                       1, GL_FALSE, glm::value_ptr(modelTransform));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao6);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(backgroundVertices) / (11 * sizeof(float)));
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
  
+ ///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+// For backgroundVertices2 (vao7 and vbo7)
+GLuint shadowMapFbo4;      // shadow map framebuffer object
+GLuint shadowMapTexture4;  // shadow map texture
+GLuint shadowMapShader4;   // shadow map shader
+
+bool setupShadowMap4()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFbo4);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo4);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTexture4);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexture4);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexture4, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShader4 = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShader4)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMap4()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo4);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShader4);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(lightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader4, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    glm::mat4 modelTransform = glm::mat4(1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader4, "modelTransform"),
+                       1, GL_FALSE, glm::value_ptr(modelTransform));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao7);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(backgroundVertices2) / (11 * sizeof(float)));
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
+
+ ///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+// For kirbyVertices (vaoKirby and vboKirby)
+GLuint shadowMapFboKirby;      // shadow map framebuffer object
+GLuint shadowMapTextureKirby;  // shadow map texture
+GLuint shadowMapShaderKirby;   // shadow map shader
+
+bool setupShadowMapKirby()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFboKirby);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFboKirby);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTextureKirby);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTextureKirby);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTextureKirby, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShaderKirby = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShaderKirby)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMapKirby()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFboKirby);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShaderKirby);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(lightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShaderKirby, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    glm::mat4 modelTransform = glm::mat4(1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShaderKirby, "modelTransform"),
+                       1, GL_FALSE, glm::value_ptr(modelTransform));
+
+    // ... then draw our triangles
+    glBindVertexArray(vaoKirby);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyVertices) / (14 * sizeof(float)));
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
+
+ ///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+// For kirbyVertices (vaoKirby and vboKirby)
+GLuint shadowMapFboKirbyFly;      // shadow map framebuffer object
+GLuint shadowMapTextureKirbyFly;  // shadow map texture
+GLuint shadowMapShaderKirbyFly;   // shadow map shader
+
+bool setupShadowMapKirbyFly()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFboKirbyFly);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFboKirbyFly);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTextureKirbyFly);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTextureKirbyFly);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTextureKirbyFly, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShaderKirbyFly = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShaderKirbyFly)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMapKirbyFly()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFboKirbyFly);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShaderKirbyFly);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(lightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShaderKirbyFly, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    glm::mat4 modelTransform = glm::mat4(1.0f);
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShaderKirbyFly, "modelTransform"),
+                       1, GL_FALSE, glm::value_ptr(modelTransform));
+
+    // ... then draw our triangles
+    glBindVertexArray(vaoKirbyFly);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyFlyVertices) / (14 * sizeof(float)));
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
+
  // called by the main function to do initial setup, such as uploading vertex
  // arrays, shader programs, etc.; returns true if successful, false otherwise
  bool setup()
