@@ -209230,7 +209230,7 @@ glm::mat4 renderShadowMap1()
 
     // ... then draw our triangles
     glBindVertexArray(vao1);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
 
     // set the framebuffer back to the default onscreen buffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -209325,16 +209325,16 @@ glm::mat4 renderShadowMap2()
 
     // ... then draw our triangles
     glBindVertexArray(vao2);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
     glBindVertexArray(vao3);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
     glBindVertexArray(vao4);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
     glBindVertexArray(vao5);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
 
     // set the framebuffer back to the default onscreen buffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -209619,7 +209619,7 @@ glm::mat4 renderShadowMapKirby()
 
     // ... then draw our triangles
     glBindVertexArray(vaoKirby);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyVertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyVertices) / (11 * sizeof(float)));
 
     // set the framebuffer back to the default onscreen buffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -209714,7 +209714,7 @@ glm::mat4 renderShadowMapKirbyFly()
 
     // ... then draw our triangles
     glBindVertexArray(vaoKirbyFly);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyFlyVertices) / (14 * sizeof(float)));
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyFlyVertices) / (11 * sizeof(float)));
 
     // set the framebuffer back to the default onscreen buffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -210380,12 +210380,18 @@ glm::mat4 renderShadowMapKirbyFly()
  
      // have model matrix for normals
      glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransform1 = renderShadowMap1();
+    ///////////////////////////////////////////////////////////////////////////
  
      // using our shader program for the first triangle...
      glUseProgram(shader1);
      glUniform1i(glGetUniformLocation(shader1, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader1, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader1, "specularMap"), 2);
+     glUniform1i(glGetUniformLocation(shader1, "shadowMap"),  3);
  
  
      // ... enable cull face ...
@@ -210423,6 +210429,11 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shader1, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader1, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader1, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform1));
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader1, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210433,18 +210444,26 @@ glm::mat4 renderShadowMapKirbyFly()
      glActiveTexture(GL_TEXTURE1);
      glBindTexture(GL_TEXTURE_2D, texture0[1]);
      glActiveTexture(GL_TEXTURE2);
-     glBindTexture(GL_TEXTURE_2D, texture0[2]);  
+     glBindTexture(GL_TEXTURE_2D, texture0[2]);
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture1);  
  
      // ... draw our triangles
      glBindVertexArray(vao1);
      glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
  
  
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransform2 = renderShadowMap2();
+    ///////////////////////////////////////////////////////////////////////////
+
      // using our shader program for the second triangle...
      glUseProgram(shader2);
      glUniform1i(glGetUniformLocation(shader2, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader2, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader2, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader2, "shadowMap"),  3);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210480,6 +210499,11 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shader2, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader2, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader2, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform2));
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader2, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210491,17 +210515,19 @@ glm::mat4 renderShadowMapKirbyFly()
      glBindTexture(GL_TEXTURE_2D, texture1[1]);  
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture2);
  
      // ... draw our triangles
      glBindVertexArray(vao2);
      glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
- 
- 
+
      // using our shader program for the third triangle...
      glUseProgram(shader3);
      glUniform1i(glGetUniformLocation(shader3, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader3, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader3, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader3, "shadowMap"),  3);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210536,6 +210562,11 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shader3, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader3, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader3, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform2));
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader3, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210547,6 +210578,8 @@ glm::mat4 renderShadowMapKirbyFly()
      glBindTexture(GL_TEXTURE_2D, texture1[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture2); 
  
      // ... draw our triangles
      glBindVertexArray(vao3);
@@ -210557,6 +210590,7 @@ glm::mat4 renderShadowMapKirbyFly()
      glUniform1i(glGetUniformLocation(shader4, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader4, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader4, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader4, "shadowMap"),  3);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210592,6 +210626,11 @@ glm::mat4 renderShadowMapKirbyFly()
      glUniform3f(glGetUniformLocation(shader4, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader4, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader4, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform2));
+
      // pass eye position
      glUniform3f(glGetUniformLocation(shader4, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
@@ -210602,6 +210641,8 @@ glm::mat4 renderShadowMapKirbyFly()
      glBindTexture(GL_TEXTURE_2D, texture1[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture2);  
  
      // ... draw our triangles
      glBindVertexArray(vao4);
@@ -210612,6 +210653,7 @@ glm::mat4 renderShadowMapKirbyFly()
      glUniform1i(glGetUniformLocation(shader5, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader5, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader5, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader5, "shadowMap"),  3);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210646,6 +210688,12 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shader5, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader5, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader5, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform2));
+
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader5, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210657,16 +210705,24 @@ glm::mat4 renderShadowMapKirbyFly()
      glBindTexture(GL_TEXTURE_2D, texture1[1]);  
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture2);
  
      // ... draw our triangles
      glBindVertexArray(vao5);
      glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
  
  //Background
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransform3 = renderShadowMap3();
+    ///////////////////////////////////////////////////////////////////////////
+
      glUseProgram(shader6);
      glUniform1i(glGetUniformLocation(shader6, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader6, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader6, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader6, "shadowMap"),  3);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210701,6 +210757,11 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shader6, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader6, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader6, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform3));
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader6, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210712,16 +210773,24 @@ glm::mat4 renderShadowMapKirbyFly()
      glBindTexture(GL_TEXTURE_2D, texture2[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture2[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture3);  
  
      // ... draw our triangles
      glBindVertexArray(vao6);
-     glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
+     glDrawArrays(GL_TRIANGLES, 0, sizeof(backgroundVertices) / (11 * sizeof(float)));
  
  //Background Clouds
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransform4 = renderShadowMap4();
+    ///////////////////////////////////////////////////////////////////////////
+
      glUseProgram(shader7);
      glUniform1i(glGetUniformLocation(shader7, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader7, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader7, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader7, "shadowMap"),  3);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210756,6 +210825,11 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shader7, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shader7, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader7, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform4));
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader7, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210767,16 +210841,30 @@ glm::mat4 renderShadowMapKirbyFly()
      glBindTexture(GL_TEXTURE_2D, texture3[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture3[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture4);  
  
      // ... draw our triangles
      glBindVertexArray(vao7);
-     glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
+     glDrawArrays(GL_TRIANGLES, 0, sizeof(backgroundVertices2) / (11 * sizeof(float)));
  
+//Kirby
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransformKirby = renderShadowMapKirby();
+    ///////////////////////////////////////////////////////////////////////////
+
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransformKirbyFly = renderShadowMapKirbyFly();
+    ///////////////////////////////////////////////////////////////////////////
+
      // using our shader program for the kirby
      glUseProgram(shaderKirby);
      glUniform1i(glGetUniformLocation(shaderKirby, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shaderKirby, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shaderKirby, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shaderKirby, "shadowMap"),  3);
  
      // ... enable cull face ... this is to stop it from rendering when not facing the viewer
      glEnable(GL_CULL_FACE);
@@ -210866,6 +210954,14 @@ glm::mat4 renderShadowMapKirbyFly()
      // pass light position
      glUniform3f(glGetUniformLocation(shaderKirby, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
      glUniform3f(glGetUniformLocation(shaderKirby, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // I think this might need an if statement to know which one to bind based on if it is flying or not
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransformKirby));
+    glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransformKirbyFly));
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shaderKirby, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
@@ -210879,6 +210975,8 @@ glm::mat4 renderShadowMapKirbyFly()
          glBindTexture(GL_TEXTURE_2D, kirbyTexture[1]);
          glActiveTexture(GL_TEXTURE2);
          glBindTexture(GL_TEXTURE_2D, kirbyTexture[2]);  
+         glActiveTexture(GL_TEXTURE3);
+         glBindTexture(GL_TEXTURE_2D, shadowMapTextureKirby);
      }
      else {
          glActiveTexture(GL_TEXTURE0);
@@ -210887,12 +210985,15 @@ glm::mat4 renderShadowMapKirbyFly()
          glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[1]);  
          glActiveTexture(GL_TEXTURE2);
          glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[2]);
+         glActiveTexture(GL_TEXTURE3);
+         glBindTexture(GL_TEXTURE_2D, shadowMapTextureKirbyFly);
      }
  
      // ... connect each texture unit to a sampler2D in the fragment shader ...
      glUniform1i(glGetUniformLocation(shaderKirby, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shaderKirby, "normalMap"), 1);
      glUniform1i(glGetUniformLocation(shaderKirby, "specularMap"), 2);
+     glUniform1i(glGetUniformLocation(shaderKirby, "shadowMap"),  3);
  
      // ... draw our triangles
      if (timer >= 0){
