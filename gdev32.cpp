@@ -210324,6 +210324,28 @@ glm::mat4 renderShadowMapKirbyFly()
      kirbyFlyTexture[2] = gdevLoadTexture("kirby-spec-jump.png", GL_REPEAT, true, true);
      if (! kirbyFlyTexture[2])
              return false;
+
+
+    ///////////////////////////////////////////////////////////////////////////
+    // setup shadow rendering
+    if (! setupShadowMap1())
+        return false;
+
+    if (! setupShadowMap2())
+        return false;
+
+    if (! setupShadowMap3())
+        return false;
+
+    if (! setupShadowMap4())
+        return false;
+
+    if (! setupShadowMapKirby())
+        return false;
+
+    if (! setupShadowMapKirbyFly())
+        return false;
+    ///////////////////////////////////////////////////////////////////////////
  
      return true;
  }
