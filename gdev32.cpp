@@ -50,75 +50,77 @@
  // Background Vertices
  float backgroundVertices[] =
  {
-     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
+     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t) tangent coordinates (tx, ty, tz)
      // back/main background of the cube
-     // Triangle 1
-     0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.25f, 0.66f,
-     0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.25f, 0.33f,
-     1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.50f, 0.33f,
- 
-     0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.25f, 0.66f,
-     1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.50f, 0.33f,
-     1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, -1.0f, 0.50f, 0.66f,
+    // Triangle 1
+    0.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, -1.00f, 0.25f, 0.66f, 1.00f, 0.00f, 0.00f,
+    0.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, -1.00f, 0.25f, 0.33f, 1.00f, 0.00f, 0.00f,
+    1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, -1.00f, 0.50f, 0.33f, 1.00f, 0.00f, 0.00f,
+
+    0.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, -1.00f, 0.25f, 0.66f, 1.00f, 0.00f, 0.00f,
+    1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, -1.00f, 0.50f, 0.33f, 1.00f, 0.00f, 0.00f,
+    1.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, -1.00f, 0.50f, 0.66f, 1.00f, 0.00f, 0.00f,
+
  };
  
  float backgroundVertices2[] =
  {
-     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t)
+     // position (x, y, z) color (r, g, b) normal (x, y, z) texture coordinates (s,t) tangent coordinates (tx, ty, tz)
      // Bottom of the cube
-     // Triangle 1
-     0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.33f,
-     0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.0f,   
-     1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.0f,
- 
-     // Triangle 2
-     0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.25f, 0.33f,
-     1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.0f,
-     1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, -1.0f, 0.0f, 0.50f, 0.33f,
- 
-     // Top of the cube
-     // Triangle 1
-     0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.66f,
-     1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 1.00f,
-     0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 1.00f,
- 
-     // Triangle 2
-     0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.25f, 0.66f,
-     1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 0.66f,
-     1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 1.0f, 0.0f, 0.50f, 1.00f,
- 
-     // Back of the cube
-     // Triangle 1
-     0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 1.00f, 0.66f,
-     1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.75f, 0.33f,
-     0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 1.00f, 0.33f,
- 
-     // Triangle 2
-     0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 1.00f, 0.66f,
-     1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.75f, 0.66f,
-     1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 0.0f, 0.0f, 1.0f, 0.75f, 0.33f,
- 
-     // Left of the cube
-     // Triangle 1
-     0.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.25f, 0.66f,
-     0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.0f, 0.66f,
-     0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.25f, 0.33f,
- 
-     // Triangle 2
-     0.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.0f, 0.33f,
-     0.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.25f, 0.33f,
-     0.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, -1.0f, 0.0f, 0.0f, 0.0f, 0.66f,
- 
-     // Right of the cube
-     // Triangle 1
-     1.0f, 1.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.5f, 0.66f,
-     1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.5f, 0.33f,
-     1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.75f, 0.66f,
- 
-     // Triangle 2
-     1.0f, 0.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.75f, 0.33f,
-     1.0f, 1.0f, 2.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.75f, 0.66f,
-     1.0f, 0.0f, 0.0f, 1.00f, 1.00f, 1.00f, 1.0f, 0.0f, 0.0f, 0.5f, 0.33f,
+    // Triangle 1
+    0.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, -1.00f, 0.00f, 0.25f, 0.33f, 1.00f, 0.00f, 0.00f,
+    0.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, -1.00f, 0.00f, 0.25f, 0.00f, 1.00f, 0.00f, 0.00f,
+    1.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, -1.00f, 0.00f, 0.50f, 0.00f, 1.00f, 0.00f, 0.00f,
+
+    // Triangle 2
+    0.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, -1.00f, 0.00f, 0.25f, 0.33f, 1.00f, 0.00f, 0.00f,
+    1.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, -1.00f, 0.00f, 0.50f, 0.00f, 1.00f, 0.00f, 0.00f,
+    1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, -1.00f, 0.00f, 0.50f, 0.33f, 1.00f, 0.00f, 0.00f,
+
+    // Top of the cube
+    // Triangle 1
+    0.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 1.00f, 0.00f, 0.25f, 0.66f, 1.00f, 0.00f, 0.00f,
+    1.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 1.00f, 0.00f, 0.50f, 1.00f, 1.00f, 0.00f, 0.00f,
+    0.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 1.00f, 0.00f, 0.25f, 1.00f, 1.00f, 0.00f, 0.00f,
+
+    // Triangle 2
+    0.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 1.00f, 0.00f, 0.25f, 0.66f, 1.00f, 0.00f, 0.00f,
+    1.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 0.00f, 1.00f, 0.00f, 0.50f, 0.66f, 1.00f, 0.00f, 0.00f,
+    1.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 1.00f, 0.00f, 0.50f, 1.00f, 1.00f, 0.00f, 0.00f,
+
+    // Back of the cube
+    // Triangle 1
+    0.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 0.66f, -1.00f, 0.00f, 0.00f,
+    1.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 1.00f, 0.75f, 0.33f, -1.00f, 0.00f, 0.00f,
+    0.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 0.33f, -1.00f, 0.00f, 0.00f,
+
+    // Triangle 2
+    0.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 0.66f, -1.00f, 0.00f, -0.00f,
+    1.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 1.00f, 0.75f, 0.66f, -1.00f, 0.00f, -0.00f,
+    1.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 1.00f, 0.75f, 0.33f, -1.00f, 0.00f, -0.00f,
+
+    // Left of the cube
+    // Triangle 1
+    0.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, -1.00f, 0.00f, 0.00f, 0.25f, 0.66f, -0.00f, 0.00f, -1.00f,
+    0.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, -1.00f, 0.00f, 0.00f, 0.00f, 0.66f, -0.00f, 0.00f, -1.00f,
+    0.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, -1.00f, 0.00f, 0.00f, 0.25f, 0.33f, -0.00f, 0.00f, -1.00f,
+
+    // Triangle 2
+    0.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, -1.00f, 0.00f, 0.00f, 0.00f, 0.33f, 0.00f, 0.00f, -1.00f,
+    0.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, -1.00f, 0.00f, 0.00f, 0.25f, 0.33f, 0.00f, 0.00f, -1.00f,
+    0.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, -1.00f, 0.00f, 0.00f, 0.00f, 0.66f, 0.00f, 0.00f, -1.00f,
+
+    // Right of the cube
+    // Triangle 1
+    1.00f, 1.00f, 0.00f, 1.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 0.50f, 0.66f, 0.00f, 0.00f, 1.00f,
+    1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 0.50f, 0.33f, 0.00f, 0.00f, 1.00f,
+    1.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 0.75f, 0.66f, 0.00f, 0.00f, 1.00f,
+
+    // Triangle 2
+    1.00f, 0.00f, 2.00f, 1.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 0.75f, 0.33f, 0.00f, 0.00f, 1.00f,
+    1.00f, 1.00f, 2.00f, 1.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 0.75f, 0.66f, 0.00f, 0.00f, 1.00f,
+    1.00f, 0.00f, 0.00f, 1.00f, 1.00f, 1.00f, 1.00f, 0.00f, 0.00f, 0.50f, 0.33f, 0.00f, 0.00f, 1.00f,
+
  };
  
  //Main  Vertices
@@ -209104,14 +209106,7 @@
  GLuint vboKirbyFly;
  
  // combined vertex and fragment shaders
- GLuint shader1;     // shader for Main  Vertices
- GLuint shader2;     // shader for first 
- GLuint shader3;     // shader for second 
- GLuint shader4;     // shader for third 
- GLuint shader5;     // shader for fourth 
- GLuint shader6;     // shader for background
- GLuint shader7;     // shader for background clouds
- GLuint shaderKirby;
+ GLuint shader;     // shader for Main  Vertices
  
  // textures
  GLuint bgtexture;   // background texture
@@ -209452,21 +209447,26 @@
      // - ... its values will NOT be normalized (GL_FALSE)
      // - ... the stride length is the number of bytes of all 8 floats of each vertex (hence, 8 * sizeof(float))
      // - ... and we start at the beginning of the array (hence, (void*) 0)
-     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) 0);
  
      // for layout location 1, these correspond to the color values (r, g, b)
      //  it has an offset of 3 * sizeof(float) since it is after the 3 float values from the initial vertices
-     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3 * sizeof(float)));
+     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (3 * sizeof(float)));
  
      // for layout location 2, these correspond to the normal
      //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
      //  and the 3 float values that indicate the color
-     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
+     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (6 * sizeof(float)));
  
      // for layout location 3, these correspond to the texture coordinates (s, t)
      //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
      //  and the 3 float values that indicate the color
-     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(9 * sizeof(float)));
+     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (9 * sizeof(float)));
+ 
+     // for layout location 4, these correspond to the tangent vector coordinates (tx, ty, tz)
+     //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
+     //  and the 3 float values that indicate the color
+     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (11 * sizeof(float)));
  
      // enable the newly-created layout location 0
      // this shall be used by our vertex shader to draw the triangles
@@ -209480,6 +209480,9 @@
  
      // and also the texture coordinates
      glEnableVertexAttribArray(3);
+ 
+     // and also the tangent coordinates
+     glEnableVertexAttribArray(4);
  
  //  setup for background clouds
          // generate the VAO and VBO objects and store their IDs in vao and vbo, respectively
@@ -209499,21 +209502,26 @@
      // - ... its values will NOT be normalized (GL_FALSE)
      // - ... the stride length is the number of bytes of all 8 floats of each vertex (hence, 8 * sizeof(float))
      // - ... and we start at the beginning of the array (hence, (void*) 0)
-     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)0);
+     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) 0);
  
      // for layout location 1, these correspond to the color values (r, g, b)
      //  it has an offset of 3 * sizeof(float) since it is after the 3 float values from the initial vertices
-     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(3 * sizeof(float)));
+     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (3 * sizeof(float)));
  
      // for layout location 2, these correspond to the normal
      //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
      //  and the 3 float values that indicate the color
-     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(6 * sizeof(float)));
+     glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (6 * sizeof(float)));
  
      // for layout location 3, these correspond to the texture coordinates (s, t)
      //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
      //  and the 3 float values that indicate the color
-     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 11 * sizeof(float), (void*)(9 * sizeof(float)));
+     glVertexAttribPointer(3, 2, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (9 * sizeof(float)));
+ 
+     // for layout location 4, these correspond to the tangent vector coordinates (tx, ty, tz)
+     //  it has an offset of 6 * sizeof(float) since it is after the 3 float values from the initial vertices
+     //  and the 3 float values that indicate the color
+     glVertexAttribPointer(4, 3, GL_FLOAT, GL_FALSE, 14 * sizeof(float), (void*) (11 * sizeof(float)));
  
      // enable the newly-created layout location 0
      // this shall be used by our vertex shader to draw the triangles
@@ -209527,6 +209535,9 @@
  
      // and also the texture coordinates
      glEnableVertexAttribArray(3);
+ 
+     // and also the tangent coordinates
+     glEnableVertexAttribArray(4);
  
      // setup for kirby
  
@@ -209641,43 +209652,8 @@
      glEnableVertexAttribArray(4);
  
      // load our shader program for main 
-     shader1 = gdevLoadShader("gdev32-1.vs", "gdev32.fs");
-     if (! shader1)
-         return false;
- 
-     // load our shader program for first 
-     shader2 = gdevLoadShader("gdev32-2.vs", "gdev32.fs");
-     if (! shader2)
-         return false;
-     
-     // load our shader program for second 
-     shader3 = gdevLoadShader("gdev32-3.vs", "gdev32.fs");
-     if (! shader3)
-         return false;
- 
-     // load our shader program for third 
-     shader4 = gdevLoadShader("gdev32-4.vs", "gdev32.fs");
-     if (! shader4)
-         return false;
- 
-     // load our shader program for fourth 
-     shader5 = gdevLoadShader("gdev32-5.vs", "gdev32.fs");
-     if (! shader5)
-         return false;
- 
-     // load our shader program for background
-     shader6 = gdevLoadShader("gdev32-6.vs", "gdev32.fs");
-     if (!shader6)
-         return false;
- 
-     // load our shader program for background
-     shader7 = gdevLoadShader("gdev32-7.vs", "gdev32.fs");
-     if (!shader7)
-         return false;
- 
-     // load our shader program for kirby
-     shaderKirby = gdevLoadShader("gdev32-kirby.vs", "gdev32.fs");
-     if (! shaderKirby)
+     shader = gdevLoadShader("gdev32.vs", "gdev32.fs");
+     if (! shader)
          return false;
  
      // load first texture
@@ -209781,10 +209757,10 @@
      glm::mat4 modelMatrix = glm::mat4(1.0f);
  
      // using our shader program for the first triangle...
-     glUseProgram(shader1);
-     glUniform1i(glGetUniformLocation(shader1, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader1, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader1, "specularMap"), 2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"), 2);
  
  
      // ... enable cull face ...
@@ -209794,13 +209770,13 @@
      glEnable(GL_DEPTH_TEST); 
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader1, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader1, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader1, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader1, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader1, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for first triangle ...
@@ -209814,17 +209790,17 @@
  
      // matrix1 = projectionViewMatrix * matrix1;
  
-     glUniformMatrix4fv(glGetUniformLocation(shader1, "matrix1"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
              1, GL_FALSE, glm::value_ptr(matrix1));
-     glUniformMatrix4fv(glGetUniformLocation(shader1, "nmatrix1"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
              1, GL_FALSE, glm::value_ptr(nmatrix1));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader1, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader1, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader1, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209840,10 +209816,10 @@
  
  
      // using our shader program for the second triangle...
-     glUseProgram(shader2);
-     glUniform1i(glGetUniformLocation(shader2, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader2, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader2, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -209852,13 +209828,13 @@
      glEnable(GL_DEPTH_TEST); 
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader2, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader2, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader2, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader2, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader2, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for second triangle ...
@@ -209871,17 +209847,17 @@
      nmatrix2 = glm::transpose(glm::inverse(matrix2));
  
  
-     glUniformMatrix4fv(glGetUniformLocation(shader2, "matrix2"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
              1, GL_FALSE, glm::value_ptr(matrix2));
-     glUniformMatrix4fv(glGetUniformLocation(shader2, "nmatrix2"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
              1, GL_FALSE, glm::value_ptr(nmatrix2));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader2, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader2, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader2, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209897,10 +209873,10 @@
  
  
      // using our shader program for the third triangle...
-     glUseProgram(shader3);
-     glUniform1i(glGetUniformLocation(shader3, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader3, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader3, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -209909,13 +209885,13 @@
      glEnable(GL_DEPTH_TEST); 
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader3, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader3, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader3, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader3, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader3, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for third triangle ...
@@ -209927,17 +209903,17 @@
      glm::mat4 nmatrix3;
      nmatrix3 = glm::transpose(glm::inverse(matrix3));
  
-     glUniformMatrix4fv(glGetUniformLocation(shader3, "matrix3"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
              1, GL_FALSE, glm::value_ptr(matrix3));
-     glUniformMatrix4fv(glGetUniformLocation(shader3, "nmatrix3"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
              1, GL_FALSE, glm::value_ptr(nmatrix3));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader3, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader3, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader3, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209952,10 +209928,10 @@
      glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
  
      // third 
-     glUseProgram(shader4);
-     glUniform1i(glGetUniformLocation(shader4, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader4, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader4, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -209964,13 +209940,13 @@
      glEnable(GL_DEPTH_TEST); 
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader4, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader4, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader4, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader4, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader4, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for third triangle ...
@@ -209982,17 +209958,17 @@
      glm::mat4 nmatrix4;
      nmatrix4 = glm::transpose(glm::inverse(matrix4));
  
-     glUniformMatrix4fv(glGetUniformLocation(shader4, "matrix4"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
              1, GL_FALSE, glm::value_ptr(matrix4));
-     glUniformMatrix4fv(glGetUniformLocation(shader4, "nmatrix4"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
              1, GL_FALSE, glm::value_ptr(nmatrix4));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader4, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader4, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader4, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210007,10 +209983,10 @@
      glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
  
      // fourth 
-     glUseProgram(shader5);
-     glUniform1i(glGetUniformLocation(shader5, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader5, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader5, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210019,13 +209995,13 @@
      glEnable(GL_DEPTH_TEST); 
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader5, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader5, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader5, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader5, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader5, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for third triangle ...
@@ -210037,17 +210013,17 @@
      glm::mat4 nmatrix5;
      nmatrix5 = glm::transpose(glm::inverse(matrix5));
  
-     glUniformMatrix4fv(glGetUniformLocation(shader5, "matrix5"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
              1, GL_FALSE, glm::value_ptr(matrix5));
-     glUniformMatrix4fv(glGetUniformLocation(shader5, "nmatrix5"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
              1, GL_FALSE, glm::value_ptr(nmatrix5));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader5, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader5, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader5, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210062,10 +210038,10 @@
      glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
  
  //Background
-     glUseProgram(shader6);
-     glUniform1i(glGetUniformLocation(shader6, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader6, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader6, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210074,13 +210050,13 @@
      glEnable(GL_DEPTH_TEST);
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader6, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader6, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader6, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader6, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader6, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for third triangle ...
@@ -210092,17 +210068,17 @@
      glm::mat4 nmatrix6;
      nmatrix6 = glm::transpose(glm::inverse(matrix6));
  
-     glUniformMatrix4fv(glGetUniformLocation(shader6, "matrix6"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
          1, GL_FALSE, glm::value_ptr(matrix6));
-     glUniformMatrix4fv(glGetUniformLocation(shader6, "nmatrix6"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
          1, GL_FALSE, glm::value_ptr(nmatrix6));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader6, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader6, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader6, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210117,10 +210093,10 @@
      glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
  
  //Background Clouds
-     glUseProgram(shader7);
-     glUniform1i(glGetUniformLocation(shader7, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shader7, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shader7, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210129,13 +210105,13 @@
      glEnable(GL_DEPTH_TEST);
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shader7, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shader7, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shader7, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shader7, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shader7, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... calculate matrix for third triangle ...
@@ -210147,17 +210123,17 @@
      glm::mat4 nmatrix7;
      nmatrix7 = glm::transpose(glm::inverse(matrix7));
  
-     glUniformMatrix4fv(glGetUniformLocation(shader7, "matrix7"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
          1, GL_FALSE, glm::value_ptr(matrix7));
-     glUniformMatrix4fv(glGetUniformLocation(shader7, "nmatrix7"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
          1, GL_FALSE, glm::value_ptr(nmatrix7));
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shader7, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shader7, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shader7, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210172,10 +210148,10 @@
      glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
  
      // using our shader program for the kirby
-     glUseProgram(shaderKirby);
-     glUniform1i(glGetUniformLocation(shaderKirby, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shaderKirby, "normalMap"),  1);
-     glUniform1i(glGetUniformLocation(shaderKirby, "specularMap"),  2);
+     glUseProgram(shader);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
  
      // ... enable cull face ... this is to stop it from rendering when not facing the viewer
      glEnable(GL_CULL_FACE);
@@ -210184,13 +210160,13 @@
      glEnable(GL_DEPTH_TEST); 
  
      // Spotlight parameters
-     glUniform3f(glGetUniformLocation(shaderKirby, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
-     glUniform1f(glGetUniformLocation(shaderKirby, "cutOff"), cutOff); // Cutoff
-     glUniform1f(glGetUniformLocation(shaderKirby, "outerCutOff"), outerCutOff); // Outer cutoff
-     glUniform1f(glGetUniformLocation(shaderKirby, "spotIntensity"), spotIntensity); // Intensity
+     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
+     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
+     glUniform1f(glGetUniformLocation(shader, "outerCutOff"), outerCutOff); // Outer cutoff
+     glUniform1f(glGetUniformLocation(shader, "spotIntensity"), spotIntensity); // Intensity
  
      // ... pass projection view matrix ...
-     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "projectionViewMatrix"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "projectionViewMatrix"),
      1, GL_FALSE, glm::value_ptr(projectionViewMatrix));
  
      // ... timing settings
@@ -210256,18 +210232,18 @@
      glm::mat4 nmatrixKirby;
      nmatrixKirby = glm::transpose(glm::inverse(matrixKirby));
  
-     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "matrixKirby"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
              1, GL_FALSE, glm::value_ptr(matrixKirby));
-     glUniformMatrix4fv(glGetUniformLocation(shaderKirby, "nmatrixKirby"),
+     glUniformMatrix4fv(glGetUniformLocation(shader, "nmatrix"),
              1, GL_FALSE, glm::value_ptr(nmatrixKirby));
  
  
      // pass light position
-     glUniform3f(glGetUniformLocation(shaderKirby, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
-     glUniform3f(glGetUniformLocation(shaderKirby, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "lightPosition"), lightPosition.x, lightPosition.y, lightPosition.z);
+     glUniform3f(glGetUniformLocation(shader, "spotLightPosition"), spotLightPosition.x, spotLightPosition.y, spotLightPosition.z);
  
      // pass eye position
-     glUniform3f(glGetUniformLocation(shaderKirby, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
  
  
      // ... set the active textures...    
@@ -210289,9 +210265,9 @@
      }
  
      // ... connect each texture unit to a sampler2D in the fragment shader ...
-     glUniform1i(glGetUniformLocation(shaderKirby, "diffuseMap"), 0);
-     glUniform1i(glGetUniformLocation(shaderKirby, "normalMap"), 1);
-     glUniform1i(glGetUniformLocation(shaderKirby, "specularMap"), 2);
+     glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
+     glUniform1i(glGetUniformLocation(shader, "normalMap"), 1);
+     glUniform1i(glGetUniformLocation(shader, "specularMap"), 2);
  
      // ... draw our triangles
      if (timer >= 0){

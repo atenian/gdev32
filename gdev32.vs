@@ -7,8 +7,8 @@ layout (location = 3) in vec2 vertexTexCoord;
 layout (location = 4) in vec3 vertexTangent;
 
 uniform mat4 projectionViewMatrix;
-uniform mat4 matrix4;
-uniform mat4 nmatrix4;
+uniform mat4 matrix;
+uniform mat4 nmatrix;
 out vec3 shaderColor;
 out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
@@ -20,10 +20,10 @@ void main()
 {
     shaderColor = vertexColor;
     shaderTexCoord = vertexTexCoord;
-    worldSpacePosition = (matrix4 * vec4(vertexPosition, 1.0f)).xyz;
-    worldSpaceNormal = normalize(nmatrix4 * vec4(normalVector, 1.0f)).xyz;
+    worldSpacePosition = (matrix * vec4(vertexPosition, 1.0f)).xyz;
+    worldSpaceNormal = normalize(nmatrix * vec4(normalVector, 1.0f)).xyz;
 
-    vec3 worldSpaceTangent = normalize(nmatrix4 * vec4(vertexTangent, 1.0f)).xyz;
+    vec3 worldSpaceTangent = normalize(nmatrix * vec4(vertexTangent, 1.0f)).xyz;
     vec3 worldSpaceBitangent = cross(worldSpaceNormal, worldSpaceTangent);
     shaderTBN = mat3(worldSpaceTangent, worldSpaceBitangent, worldSpaceNormal);
 
