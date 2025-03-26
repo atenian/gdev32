@@ -209136,7 +209136,7 @@
  float lastY = 360.0f / 2.0;
  
  // camera variables
- glm::vec3 lightPosition = glm::vec3(0.0f, 16.0f, 10.0f);
+ glm::vec3 lightPosition = glm::vec3(0.0f, 16.0f, 30.0f);
  glm::vec3 spotLightPosition = glm::vec3(-1.0f, 1.0f, 3.5f);
  
  // spotlight stuff
@@ -209743,6 +209743,9 @@
  
      // base matrix = multiplying projection matrix and view transform matrix
      glm::mat4 projectionViewMatrix;
+
+     // object type variable
+     float setObjectType = 0.0f;
  
      // calculate projection matrix
      projectionViewMatrix = glm::perspective(glm::radians(fov),
@@ -209801,6 +209804,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = -1.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209858,6 +209865,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = 0.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209914,6 +209925,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = 0.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209969,6 +209984,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = -1.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210024,6 +210043,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = -1.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210079,6 +210102,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = 1.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210134,6 +210161,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = 1.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210244,6 +210275,10 @@
  
      // pass eye position
      glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
+
+     // pass object type
+     setObjectType = 2.0f;
+     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
  
  
      // ... set the active textures...    
