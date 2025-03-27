@@ -209210,12 +209210,12 @@ glm::mat4 renderShadowMap()
     // vector should be set to the spot light's outer cone angle times 2
     // and the spot light's focus point, respectively)
     glm::mat4 lightTransform;
-    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+    lightTransform = glm::perspective(glm::cos(glm::radians(outerCutOffValue)),       // fov
                                       1.0f,                      // aspect ratio
                                       0.1f,                      // near plane
                                       100.0f);                   // far plane
     lightTransform *= glm::lookAt(spotLightPosition,                 // eye position
-                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  spotLightPosition + lightDirection,   // center position 
                                   glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
     glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "lightTransform"),
                        1, GL_FALSE, glm::value_ptr(lightTransform));
