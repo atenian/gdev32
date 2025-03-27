@@ -209251,7 +209251,7 @@ glm::mat4 renderShadowMap()
     glm::mat4 matrix3;
     matrix3 = glm::translate(modelMatrix, glm::vec3(-2.5f, 1.5f, -0.2f));
     matrix3 = glm::scale(matrix3, glm::vec3(2.0f, 1.0f, 1.5f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
     1, GL_FALSE, glm::value_ptr(matrix3));
 
     // ... then draw our triangles
@@ -209262,7 +209262,7 @@ glm::mat4 renderShadowMap()
     glm::mat4 matrix4;
     matrix4 = glm::translate(modelMatrix, glm::vec3(-3.5f, 0.9f, -0.2f));
     matrix4 = glm::scale(matrix4, glm::vec3(2.0f, 1.0f, 1.5f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
     1, GL_FALSE, glm::value_ptr(matrix4));
 
     // ... then draw our triangles
@@ -209273,7 +209273,7 @@ glm::mat4 renderShadowMap()
     glm::mat4 matrix5;
     matrix5 = glm::translate(modelMatrix, glm::vec3(0.5f, 0.9f, -0.2f));
     matrix5 = glm::scale(matrix5, glm::vec3(2.0f, 1.0f, 1.5f));
-    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
     1, GL_FALSE, glm::value_ptr(matrix5));
 
     // ... then draw our triangles
