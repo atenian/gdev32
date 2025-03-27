@@ -1,11 +1,5 @@
 /******************************************************************************
- * This demo adds lighting to the current project scene.
- * In particular, we've added a controllable point light and spotlight.
- * Additionally, we've added normal maps and specular maps.
- *
- * As an aside, the diffuse textures were used directly as the height maps
- * for the generation of the normal maps. For clarification about the specs,
- * the textures are the same as the height maps being asked for.
+ * This demo adds shadow maps to the scene.
  *
  * These are the controls available to the user.
  * - WASD to move the camera
@@ -25,6 +19,7 @@
         4 - spotlight to down
         5 - spotlight to left
         6 - spotlight to right
+ * - Q to toggle shadows
  *
  * Aragoza, Gomez, Supan
  *****************************************************************************/
@@ -45,6 +40,12 @@
  float jump, distance, arc, walk = 0;
  int counter = 0;
  bool switchCheck, onRight, autoSpot = true;
+ bool shadowsEnabled = true; 
+ int pcfSize = 2;         
+ float pcfSpread = 1.0f;  
+ bool pcfEnabled = true;
+ float shadowSoftness = 5;
+ bool spacePressed, qPressed, isFlying = false; 
  
  // define a vertex array to hold our vertices
  // Background Vertices
@@ -209278,7 +209279,75 @@ glm::mat4 renderShadowMap()
 
     // ... then draw our triangles
     glBindVertexArray(vao5);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float))); 
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
+    
+    // setting up kirby
+    // ... timing settings
+    const float pi = 3.14159265358979323846f;
+    float timer = sin(glfwGetTime() / 2 - pi);
+    
+    if (timer < 0){
+        jump = fabs(sin(glfwGetTime() * 4)) / 4;
+        arc = (sin(glfwGetTime() - pi/2) + 1.0f) / 1.5f;
+        if (onRight){
+            distance = (sin(glfwGetTime() / 2 - pi/2) + 1.0f) * 2.0f;
+        }
+        else {
+            distance = (sin(glfwGetTime() / 2 + pi/2) + 1.0f) * 2.0f;
+        }
+
+        switchCheck = true;
+    }
+    else {
+        walk = (sin(glfwGetTime() * 4)) / 3.0f;
+
+        if (switchCheck){
+            if (onRight) {
+                onRight = false;
+            }
+            else {
+                onRight = true;
+            }
+            
+            switchCheck = false;
+        }
+    }
+
+    // ... calculate matrix for kirby ...
+    glm::mat4 matrixKirby;
+    matrixKirby = glm::translate(modelMatrix, glm::vec3(-3.0f + distance + walk, 1.08f + jump + arc, -0.75f));
+
+    if (timer >= 0){
+        matrixKirby = glm::rotate(matrixKirby, glm::radians(walk * 180.0f - 90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        matrixKirby = glm::scale(matrixKirby, glm::vec3(1.0f, 1.0f, 1.0f));
+    }
+    else {
+        if (onRight){
+            matrixKirby = glm::rotate(matrixKirby, glm::radians(-45.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        }
+        else {
+            matrixKirby = glm::rotate(matrixKirby, glm::radians(-135.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+        }
+
+        matrixKirby = glm::scale(matrixKirby, glm::vec3(1.0f + jump, 1.0f + jump, 1.0f + jump));
+    }
+
+    matrixKirby = glm::scale(matrixKirby, glm::vec3(0.05f, 0.05f, 0.05f));
+
+
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
+    1, GL_FALSE, glm::value_ptr(matrixKirby));
+
+    // ... then draw our triangles
+    if (timer >= 0){
+        glBindVertexArray(vaoKirby);
+        glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyVertices) / (11 * sizeof(float)));
+    }
+    else {
+        glBindVertexArray(vaoKirbyFly);
+        glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyFlyVertices) / (11 * sizeof(float)));
+    }
+
 
     // set the framebuffer back to the default onscreen buffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -209887,7 +209956,13 @@ glm::mat4 renderShadowMap()
  
     ///////////////////////////////////////////////////////////////////////////
     // draw the shadow map
-    glm::mat4 lightTransform = renderShadowMap();
+    glm::mat4 lightTransform;
+
+    if (shadowsEnabled) {
+        lightTransform = renderShadowMap();
+    } else {
+        lightTransform = glm::mat4(1.0f);
+    }
     ///////////////////////////////////////////////////////////////////////////
 
      // clear the whole frame
@@ -209922,6 +209997,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"), 2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
  
@@ -209994,6 +210071,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
@@ -210064,6 +210143,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
@@ -210132,6 +210213,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
@@ -210200,6 +210283,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
@@ -210268,6 +210353,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
@@ -210336,6 +210423,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
@@ -210404,6 +210493,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
      glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     glUniform1i(glGetUniformLocation(shader, "pcfSize"), pcfEnabled ? pcfSize : 0);
+     glUniform1f(glGetUniformLocation(shader, "pcfSpread"), pcfSpread);
      ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ... this is to stop it from rendering when not facing the viewer
@@ -210427,6 +210518,7 @@ glm::mat4 renderShadowMap()
      float timer = sin(glfwGetTime() / 2 - pi);
      
      if (timer < 0){
+        isFlying = true;
          jump = fabs(sin(glfwGetTime() * 4)) / 4;
          arc = (sin(glfwGetTime() - pi/2) + 1.0f) / 1.5f;
          if (onRight){
@@ -210439,6 +210531,7 @@ glm::mat4 renderShadowMap()
          switchCheck = true;
      }
      else {
+        isFlying = false;
          walk = (sin(glfwGetTime() * 4)) / 3.0f;
  
          if (switchCheck){
@@ -210760,11 +210853,40 @@ glm::mat4 renderShadowMap()
                  lightDirection = glm::vec3(-1.0f, 0.0f, 0.0f);
                  std::cout << "Spotlight direction: " << "(" << lightDirection.x << ", " << lightDirection.y << ", " << lightDirection.z << ")" << std::endl;
              }
+
              if (glfwGetKey(pWindow, GLFW_KEY_SPACE) == GLFW_PRESS){
-                 if (autoSpot) autoSpot = false;
-                 else autoSpot = true;
-                 std::cout << "Spotlight position: " << "(" << spotLightPosition.x << ", " << spotLightPosition.y << ", " << spotLightPosition.z << ")" << std::endl;
+                if (!spacePressed){
+                    autoSpot = !autoSpot;
+                    std::cout << "Automatic spotlight tracking: " << (autoSpot ? "Enabled" : "Disabled") << std::endl;
+                    spacePressed = true;    
+                }
+            }
+             else {
+                spacePressed = false;
              }
+
+             // Shadow Controls
+             if (glfwGetKey(pWindow, GLFW_KEY_Q) == GLFW_PRESS){
+                if (!qPressed){
+                    shadowsEnabled = !shadowsEnabled;
+                    std::cout << "Shadows: " << (shadowsEnabled ? "Enabled" : "Disabled") << std::endl;
+                    qPressed = true;
+                }      
+             }
+             else {
+                qPressed = false;
+             }
+            
+             if (glfwGetKey(pWindow, GLFW_KEY_E) == GLFW_PRESS){
+                shadowSoftness = std::min(shadowSoftness + 0.1f, 10.0f);
+                std::cout << "Shadow softness: " << shadowSoftness << std::endl;
+             }
+             if (glfwGetKey(pWindow, GLFW_KEY_R) == GLFW_PRESS){
+                shadowSoftness = std::max(shadowSoftness - 0.1f, 0.0f);
+                std::cout << "Shadow softness: " << shadowSoftness << std::endl;
+             }
+             pcfSize = int(shadowSoftness / 3.0f) + 1;
+             pcfSpread = 0.5f + (shadowSoftness / 10.0f) * 2.5f;
              
              glm::vec3 lightForward = glm::vec3(0.0f, 0.0f, -1.0f);
              glm::vec3 lightUp = glm::vec3(0.0f, 1.0f, 0.0f);
