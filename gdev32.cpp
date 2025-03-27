@@ -209149,6 +209149,152 @@
  
  // called by the main function to do initial setup, such as uploading vertex
  // arrays, shader programs, etc.; returns true if successful, false otherwise
+
+///////////////////////////////////////////////////////////////////////////////
+// SHADOW MAPPING CODE
+
+#define SHADOW_SIZE 1024
+GLuint shadowMapFbo;      // shadow map framebuffer object
+GLuint shadowMapTexture;  // shadow map texture
+GLuint shadowMapShader;   // shadow map shader
+
+bool setupShadowMap()
+{
+    // create the FBO for rendering shadows
+    glGenFramebuffers(1, &shadowMapFbo);
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo);
+
+    // attach a texture object to the framebuffer
+    glGenTextures(1, &shadowMapTexture);
+    glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, SHADOW_SIZE, SHADOW_SIZE,
+                 0, GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, shadowMapTexture, 0);
+
+    // check if we did everything right
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
+        std::cout << "Could not create custom framebuffer.\n";
+        return false;
+    }
+
+    // load the shader program for drawing the shadow map
+    shadowMapShader = gdevLoadShader("gdev32s.vs", "gdev32s.fs");
+    if (! shadowMapShader)
+        return false;
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    return true;
+}
+
+glm::mat4 renderShadowMap()
+{
+    // use the shadow framebuffer for drawing the shadow map
+    glBindFramebuffer(GL_FRAMEBUFFER, shadowMapFbo);
+
+    // the viewport should be the size of the shadow map
+    glViewport(0, 0, SHADOW_SIZE, SHADOW_SIZE);
+
+    // clear the shadow map
+    // (we don't have a color buffer attachment, so no need to clear that)
+    glClear(GL_DEPTH_BUFFER_BIT);
+
+    // using the shadow map shader...
+    glUseProgram(shadowMapShader);
+
+    // ... set up the light space matrix...
+    // (note that if you use a spot light, the FOV and the center position
+    // vector should be set to the spot light's outer cone angle times 2
+    // and the spot light's focus point, respectively)
+    glm::mat4 lightTransform;
+    lightTransform = glm::perspective(glm::radians(90.0f),       // fov
+                                      1.0f,                      // aspect ratio
+                                      0.1f,                      // near plane
+                                      100.0f);                   // far plane
+    lightTransform *= glm::lookAt(spotLightPosition,                 // eye position
+                                  glm::vec3(0.0f, 0.0f, 0.0f),   // center position
+                                  glm::vec3(0.0f, 1.0f, 0.0f));  // up vector
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
+
+    // ... set up the model matrix... (just identity for this demo)
+    // have model matrix for normals
+    glm::mat4 modelMatrix = glm::mat4(1.0f);
+
+// for main platform
+    glm::mat4 matrix1;
+    matrix1 = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.2f, 0.0f));
+    matrix1 = glm::scale(matrix1, glm::vec3(4.0f, 1.0f, 2.0f));
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
+    1, GL_FALSE, glm::value_ptr(matrix1));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao1);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(mainVertices) / (11 * sizeof(float)));
+
+// for smaller platforms
+    // first platform
+    glm::mat4 matrix2;
+    matrix2 = glm::translate(modelMatrix, glm::vec3(-0.5f, 1.5f, -0.2f));
+    matrix2 = glm::scale(matrix2, glm::vec3(2.0f, 1.0f, 1.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
+    1, GL_FALSE, glm::value_ptr(matrix2));
+    
+    // ... then draw our triangles
+    glBindVertexArray(vao2);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
+
+    // second platform
+    glm::mat4 matrix3;
+    matrix3 = glm::translate(modelMatrix, glm::vec3(-2.5f, 1.5f, -0.2f));
+    matrix3 = glm::scale(matrix3, glm::vec3(2.0f, 1.0f, 1.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+    1, GL_FALSE, glm::value_ptr(matrix3));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao3);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
+
+    // third platform
+    glm::mat4 matrix4;
+    matrix4 = glm::translate(modelMatrix, glm::vec3(-3.5f, 0.9f, -0.2f));
+    matrix4 = glm::scale(matrix4, glm::vec3(2.0f, 1.0f, 1.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+    1, GL_FALSE, glm::value_ptr(matrix4));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao4);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float)));
+
+    // fourth platform
+    glm::mat4 matrix5;
+    matrix5 = glm::translate(modelMatrix, glm::vec3(0.5f, 0.9f, -0.2f));
+    matrix5 = glm::scale(matrix5, glm::vec3(2.0f, 1.0f, 1.5f));
+    glUniformMatrix4fv(glGetUniformLocation(shader, "matrix"),
+    1, GL_FALSE, glm::value_ptr(matrix5));
+
+    // ... then draw our triangles
+    glBindVertexArray(vao5);
+    glDrawArrays(GL_TRIANGLES, 0, sizeof(Vertices) / (11 * sizeof(float))); 
+
+    // set the framebuffer back to the default onscreen buffer
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // before drawing the final scene, we need to set drawing to the whole window
+    int width, height;
+    glfwGetFramebufferSize(pWindow, &width, &height);
+    glViewport(0, 0, width, height);
+
+    // we will need the light transformation matrix again in the main rendering code
+    return lightTransform;
+}
+
+// SHADOW MAPPING CODE
+///////////////////////////////////////////////////////////////////////////////
+
  bool setup()
  {
      // setup for main 
@@ -209721,6 +209867,12 @@
      kirbyFlyTexture[2] = gdevLoadTexture("kirby-spec-jump.png", GL_REPEAT, true, true);
      if (! kirbyFlyTexture[2])
              return false;
+
+    ///////////////////////////////////////////////////////////////////////////
+    // setup shadow rendering
+    if (! setupShadowMap())
+        return false;
+    ///////////////////////////////////////////////////////////////////////////
  
      return true;
  }
@@ -209733,6 +209885,11 @@
      deltaTime = currentFrame - lastFrame;
      lastFrame = currentFrame;
  
+    ///////////////////////////////////////////////////////////////////////////
+    // draw the shadow map
+    glm::mat4 lightTransform = renderShadowMap();
+    ///////////////////////////////////////////////////////////////////////////
+
      // clear the whole frame
      glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -209808,6 +209965,11 @@
      // pass object type
      setObjectType = -1.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+    1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209816,6 +209978,8 @@
      glBindTexture(GL_TEXTURE_2D, texture0[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture0[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
      // ... draw our triangles
      glBindVertexArray(vao1);
@@ -209869,6 +210033,11 @@
      // pass object type
      setObjectType = 0.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+    1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209877,6 +210046,8 @@
      glBindTexture(GL_TEXTURE_2D, texture1[1]);  
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
      // ... draw our triangles
      glBindVertexArray(vao2);
@@ -209929,6 +210100,11 @@
      // pass object type
      setObjectType = 0.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+    1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209937,6 +210113,8 @@
      glBindTexture(GL_TEXTURE_2D, texture1[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
      // ... draw our triangles
      glBindVertexArray(vao3);
@@ -209988,6 +210166,11 @@
      // pass object type
      setObjectType = -1.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -209996,6 +210179,8 @@
      glBindTexture(GL_TEXTURE_2D, texture1[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
      // ... draw our triangles
      glBindVertexArray(vao4);
@@ -210047,6 +210232,11 @@
      // pass object type
      setObjectType = -1.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+                       1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210055,6 +210245,8 @@
      glBindTexture(GL_TEXTURE_2D, texture1[1]);  
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture1[2]);
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
      // ... draw our triangles
      glBindVertexArray(vao5);
