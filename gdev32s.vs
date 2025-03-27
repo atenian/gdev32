@@ -12,9 +12,9 @@
 
 layout (location = 0) in vec3 vertexPosition;
 uniform mat4 lightTransform;
-uniform mat4 modelTransform;
+uniform mat4 matrix;
 
 void main()
 {
-    gl_Position = lightTransform * modelTransform * vec4(vertexPosition, 1.0f);
+    gl_Position = lightTransform * matrix * vec4(vertexPosition, 1.0f);
 }

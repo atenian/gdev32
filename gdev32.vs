@@ -9,12 +9,19 @@ layout (location = 4) in vec3 vertexTangent;
 uniform mat4 projectionViewMatrix;
 uniform mat4 matrix;
 uniform mat4 nmatrix;
+uniform float setObjectType;
 out vec3 shaderColor;
 out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
 out vec3 worldSpaceNormal;
 out float objectType;
 out mat3 shaderTBN;
+
+///////////////////////////////////////////////////////////////////////////////
+// added for shadow mapping
+uniform mat4 lightTransform;
+out vec4 shaderLightSpacePosition;
+///////////////////////////////////////////////////////////////////////////////
 
 void main()
 {
@@ -27,7 +34,12 @@ void main()
     vec3 worldSpaceBitangent = cross(worldSpaceNormal, worldSpaceTangent);
     shaderTBN = mat3(worldSpaceTangent, worldSpaceBitangent, worldSpaceNormal);
 
-    objectType = -1.0f;
+    objectType = setObjectType;
 
     gl_Position = projectionViewMatrix * vec4(worldSpacePosition, 1.0f);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // also compute this fragment position from the light's point of view
+    shaderLightSpacePosition = lightTransform * matrix * vec4(vertexPosition, 1.0f);
+    ///////////////////////////////////////////////////////////////////////////
 }
