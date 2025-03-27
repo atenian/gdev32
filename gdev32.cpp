@@ -209921,6 +209921,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"), 2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
  
      // ... enable cull face ...
@@ -209991,6 +209993,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210059,6 +210063,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210125,6 +210131,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210191,6 +210199,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210257,6 +210267,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210298,6 +210310,11 @@ glm::mat4 renderShadowMap()
      // pass object type
      setObjectType = 1.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+    1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210305,7 +210322,9 @@ glm::mat4 renderShadowMap()
      glActiveTexture(GL_TEXTURE1);
      glBindTexture(GL_TEXTURE_2D, texture2[1]);
      glActiveTexture(GL_TEXTURE2);
-     glBindTexture(GL_TEXTURE_2D, texture2[2]);  
+     glBindTexture(GL_TEXTURE_2D, texture2[2]); 
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture); 
  
      // ... draw our triangles
      glBindVertexArray(vao6);
@@ -210316,6 +210335,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ...
      glEnable(GL_CULL_FACE);
@@ -210357,6 +210378,11 @@ glm::mat4 renderShadowMap()
      // pass object type
      setObjectType = 1.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+    1, GL_FALSE, glm::value_ptr(lightTransform));
  
      // ... set the active textures...
      glActiveTexture(GL_TEXTURE0);
@@ -210365,6 +210391,8 @@ glm::mat4 renderShadowMap()
      glBindTexture(GL_TEXTURE_2D, texture3[1]);
      glActiveTexture(GL_TEXTURE2);
      glBindTexture(GL_TEXTURE_2D, texture3[2]);  
+     glActiveTexture(GL_TEXTURE3);
+     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
      // ... draw our triangles
      glBindVertexArray(vao7);
@@ -210375,6 +210403,8 @@ glm::mat4 renderShadowMap()
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"),  1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"),  2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... enable cull face ... this is to stop it from rendering when not facing the viewer
      glEnable(GL_CULL_FACE);
@@ -210471,6 +210501,11 @@ glm::mat4 renderShadowMap()
      // pass object type
      setObjectType = 2.0f;
      glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
+
+    ///////////////////////////////////////////////////////////////////////////
+    // ... set up the light transformation (for looking up the shadow map)...
+    glUniformMatrix4fv(glGetUniformLocation(shader, "lightTransform"),
+    1, GL_FALSE, glm::value_ptr(lightTransform));
  
  
      // ... set the active textures...    
@@ -210481,6 +210516,8 @@ glm::mat4 renderShadowMap()
          glBindTexture(GL_TEXTURE_2D, kirbyTexture[1]);
          glActiveTexture(GL_TEXTURE2);
          glBindTexture(GL_TEXTURE_2D, kirbyTexture[2]);  
+         glActiveTexture(GL_TEXTURE3);
+         glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
      }
      else {
          glActiveTexture(GL_TEXTURE0);
@@ -210489,12 +210526,16 @@ glm::mat4 renderShadowMap()
          glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[1]);  
          glActiveTexture(GL_TEXTURE2);
          glBindTexture(GL_TEXTURE_2D, kirbyFlyTexture[2]);
+         glActiveTexture(GL_TEXTURE3);
+         glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
      }
  
      // ... connect each texture unit to a sampler2D in the fragment shader ...
      glUniform1i(glGetUniformLocation(shader, "diffuseMap"), 0);
      glUniform1i(glGetUniformLocation(shader, "normalMap"), 1);
      glUniform1i(glGetUniformLocation(shader, "specularMap"), 2);
+     glUniform1i(glGetUniformLocation(shader, "shadowMap"),  3);
+     ///////////////////////////////////////////////////////////////////////////
  
      // ... draw our triangles
      if (timer >= 0){
