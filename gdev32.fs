@@ -143,7 +143,7 @@ void main()
 
     // refactoring conditional since it was bugged
     // For type 1 (background)
-    vec4 colorType1 = ((finalDiffuseColor + finalAmbientFactor) * 0.36f + 0.64f + spotSpecularLighting / 48.0f) * texColor * vec4(shaderColor, 1.0f);
+    vec4 colorType1 = ((finalDiffuseColor * 0.05f + finalAmbientFactor) * 0.36f + 0.64f + spotSpecularLighting / 48.0f) * texColor * vec4(shaderColor, 1.0f);
 
     // For type 2 (Kirby)
     vec4 colorType2 = (finalDiffuseColor * 1.0f + finalAmbientFactor / 2.0f + finalSpecularLighting / 8.0f) * texColor * vec4(shaderColor, 1.0f);
