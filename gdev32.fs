@@ -159,10 +159,9 @@ void main()
     vec4 finalColorTemp = colorType3 * (1.0 - isType1 - isType2) + colorType1 * isType1 + colorType2 * isType2;
 
     // trnasparency stuff
-    float alpha = texture(diffuseMap, shaderTexCoord).a;
-    if (objectType == -5.0f) {
-        alpha = 0.3f;  // Warp Star Transparency
-    }
+    float textureAlpha = texture(diffuseMap, shaderTexCoord).a;
+    float warpStarAlpha = 0.48f;
+    float alpha = mix(textureAlpha, warpStarAlpha, step(-5.1f, objectType) * step(objectType, -4.9f));
 
     // // Add alpha threshold
     // if (alpha < 0.1) {
