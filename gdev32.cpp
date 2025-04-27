@@ -211276,18 +211276,18 @@ glm::mat4 renderShadowMap()
         glDrawArrays(GL_TRIANGLES, 0, sizeof(kirbyFlyVertices) / (11 * sizeof(float)));
     }
 
-// for Warp Star
-    // warp star
-    glm::mat4 matrixWarpStar;
-    matrixWarpStar = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.75f, -0.5f));
-    matrixWarpStar = glm::rotate(matrixWarpStar, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
-    matrixWarpStar = glm::scale(matrixWarpStar, glm::vec3(0.07f, 0.07f, 0.07f));
-    glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
-    1, GL_FALSE, glm::value_ptr(matrixWarpStar));
+// // for Warp Star
+//     // warp star
+//     glm::mat4 matrixWarpStar;
+//     matrixWarpStar = glm::translate(modelMatrix, glm::vec3(-1.0f, 0.75f, -0.5f));
+//     matrixWarpStar = glm::rotate(matrixWarpStar, glm::radians(90.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+//     matrixWarpStar = glm::scale(matrixWarpStar, glm::vec3(0.07f, 0.07f, 0.07f));
+//     glUniformMatrix4fv(glGetUniformLocation(shadowMapShader, "matrix"),
+//     1, GL_FALSE, glm::value_ptr(matrixWarpStar));
     
-    // ... then draw our triangles
-    glBindVertexArray(vaoWarpStar);
-    glDrawArrays(GL_TRIANGLES, 0, sizeof(warpStarVertices) / (11 * sizeof(float)));
+//     // ... then draw our triangles
+//     glBindVertexArray(vaoWarpStar);
+//     glDrawArrays(GL_TRIANGLES, 0, sizeof(warpStarVertices) / (11 * sizeof(float)));
 
     // set the framebuffer back to the default onscreen buffer
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -211933,14 +211933,14 @@ glm::mat4 renderShadowMap()
              return false;
 
     // load warp star texture
-    texture1[0] = gdevLoadTexture("WarpStar.jpg", GL_REPEAT, true, true);
-    if (! texture1[0])
+    warpStarTexture[0] = gdevLoadTexture("WarpStar.png", GL_REPEAT, true, true);
+    if (! warpStarTexture[0])
         return false;
-    texture1[1] = gdevLoadTexture("WarpStarN.png", GL_REPEAT, true, true);
-    if (! texture1[1])
+    warpStarTexture[1] = gdevLoadTexture("WarpStarN.png", GL_REPEAT, true, true);
+    if (! warpStarTexture[1])
         return false;
-    texture1[2] = gdevLoadTexture("WarpStarSpec.png", GL_REPEAT, true, true);
-    if (! texture1[2])
+    warpStarTexture[2] = gdevLoadTexture("WarpStarSpec.png", GL_REPEAT, true, true);
+    if (! warpStarTexture[2])
         return false;    
 
     ///////////////////////////////////////////////////////////////////////////
@@ -211974,7 +211974,7 @@ glm::mat4 renderShadowMap()
      // clear the whole frame
      glClearColor(0.0f, 0.3f, 0.3f, 1.0f);
      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
- 
+
      //spotlight
      cutOff = glm::cos(glm::radians(cutOffValue));
      outerCutOff = glm::cos(glm::radians(outerCutOffValue));
@@ -212662,6 +212662,11 @@ glm::mat4 renderShadowMap()
     // ... enable OpenGL's hidden surface removal ...
     glEnable(GL_DEPTH_TEST); 
  
+    // Blending
+    glEnable(GL_BLEND); 
+    glDepthMask(GL_FALSE);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+
     // Spotlight parameters
     glUniform3f(glGetUniformLocation(shader, "lightDirection"), lightDirection.x, lightDirection.y, lightDirection.z); // Direction
     glUniform1f(glGetUniformLocation(shader, "cutOff"), cutOff); // Cutoff
@@ -212695,7 +212700,7 @@ glm::mat4 renderShadowMap()
     glUniform3f(glGetUniformLocation(shader, "eyePosition"), eyePosition.x, eyePosition.y, eyePosition.z);
 
     // pass object type
-    setObjectType = -1.0f;
+    setObjectType = -5.0f;
     glUniform1f(glGetUniformLocation(shader, "setObjectType"), setObjectType);
 
     ///////////////////////////////////////////////////////////////////////////
@@ -212705,17 +212710,21 @@ glm::mat4 renderShadowMap()
  
     // ... set the active textures...
     glActiveTexture(GL_TEXTURE0);
-    glBindTexture(GL_TEXTURE_2D, texture1[0]);
+    glBindTexture(GL_TEXTURE_2D, warpStarTexture[0]);
     glActiveTexture(GL_TEXTURE1);
-    glBindTexture(GL_TEXTURE_2D, texture1[1]);  
+    glBindTexture(GL_TEXTURE_2D, warpStarTexture[1]);  
     glActiveTexture(GL_TEXTURE2);
-    glBindTexture(GL_TEXTURE_2D, texture1[2]);
+    glBindTexture(GL_TEXTURE_2D, warpStarTexture[2]);
     glActiveTexture(GL_TEXTURE3);
     glBindTexture(GL_TEXTURE_2D, shadowMapTexture);
  
     // ... draw our triangles
     glBindVertexArray(vaoWarpStar);
     glDrawArrays(GL_TRIANGLES, 0, sizeof(warpStarVertices) / (11 * sizeof(float)));
+
+    // Disable blend after warp star
+    glDepthMask(GL_TRUE);
+    glDisable(GL_BLEND);
  }
  
  /*****************************************************************************/

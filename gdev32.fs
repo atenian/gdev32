@@ -156,5 +156,19 @@ void main()
     float isType2 = step(1.9, objectType) * step(objectType, 2.1); // 1 if objectType is ~2.0, 0 otherwise
 
     // Linear interpolation - will pick one color based on the type
-    finalColor = colorType3 * (1.0 - isType1 - isType2) + colorType1 * isType1 + colorType2 * isType2;
+    vec4 finalColorTemp = colorType3 * (1.0 - isType1 - isType2) + colorType1 * isType1 + colorType2 * isType2;
+
+    // trnasparency stuff
+    float alpha = texture(diffuseMap, shaderTexCoord).a;
+    if (objectType == -5.0f) {
+        alpha = 0.3f;  // Warp Star Transparency
+    }
+
+    // // Add alpha threshold
+    // if (alpha < 0.1) {
+    //     discard;
+    // }
+
+    // Apply texture alpha
+    finalColor = vec4(finalColorTemp.rgb, alpha); 
 }
