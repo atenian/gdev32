@@ -10,6 +10,8 @@ uniform mat4 projectionViewMatrix;
 uniform mat4 matrix;
 uniform mat4 nmatrix;
 uniform float setObjectType;
+uniform mat4 pointLightTransform;
+out vec4 pointLightSpacePosition;
 out vec3 shaderColor;
 out vec2 shaderTexCoord;
 out vec3 worldSpacePosition;
@@ -41,5 +43,6 @@ void main()
     ///////////////////////////////////////////////////////////////////////////
     // also compute this fragment position from the light's point of view
     shaderLightSpacePosition = lightTransform * matrix * vec4(vertexPosition, 1.0f);
+    pointLightSpacePosition = pointLightTransform * matrix * vec4(vertexPosition, 1.0f);
     ///////////////////////////////////////////////////////////////////////////
 }

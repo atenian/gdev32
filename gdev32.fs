@@ -13,8 +13,8 @@ uniform vec3 spotLightPosition;
 uniform sampler2D diffuseMap;
 uniform sampler2D normalMap;
 uniform sampler2D specularMap;
-uniform int pcfSize;
-uniform float pcfSpread;
+uniform float alphaShift;
+
 
 // Spotlight parameters
 uniform vec3 lightDirection;  // Direction of the spotlight
@@ -33,7 +33,11 @@ out vec4 finalColor;
 ///////////////////////////////////////////////////////////////////////////////
 // added for shadow mapping
 in vec4 shaderLightSpacePosition;
+in vec4 pointLightSpacePosition;
 uniform sampler2D shadowMap;
+uniform sampler2D pointLightShadowMap;
+uniform int pcfSize;
+uniform float pcfSpread;
 
 float inShadow()
 {
@@ -80,6 +84,52 @@ float inShadow()
     
     return shadow;
 }
+
+float inPointLightShadow()
+{
+    // perform perspective division and rescale to [0,1] range
+    vec3 position = pointLightSpacePosition.xyz / pointLightSpacePosition.w;
+    position = position * 0.5f + 0.5f;
+
+    // if position is outside light-space frustum, not in shadow
+    if (position.x < 0.0f || position.x > 1.0f ||
+        position.y < 0.0f || position.y > 1.0f ||
+        position.z < 0.0f || position.z > 1.0f)
+    {
+        return 0.0; // 0.0 means no shadow
+    }
+
+    //get current fragment depth
+    float currentDepth = position.z;
+    
+    // add bias to prevent shadow acne
+    float bias = 0.0005f;
+    
+    // get texture size for calculating texel size
+    vec2 texelSize = 1.0 / textureSize(pointLightShadowMap, 0);
+    
+    // PCF implementation
+    float shadow = 0.0;
+    
+    // use PCF kernel size based on pcfSize variable
+    for(int x = -pcfSize; x <= pcfSize; ++x)
+    {
+        for(int y = -pcfSize; y <= pcfSize; ++y)
+        {
+            // Sample shadow map at offset position
+            float pcfDepth = texture(pointLightShadowMap, position.xy + vec2(x, y) * texelSize * pcfSpread).r;
+            
+            // Compare depths
+            shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;        
+        }    
+    }
+    
+    // normalize by total number of samples
+    int totalSamples = (2 * pcfSize + 1) * (2 * pcfSize + 1);
+    shadow /= float(totalSamples);
+    
+    return shadow;
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 // Simple cel-shading function using thresholds
@@ -89,7 +139,7 @@ float celShade(float intensity) {
     } else if (intensity > celThreshold1) {
         return 0.7;
     } else if (intensity > 0.05) {
-        return 0.4;
+        return 0.2;
     } else {
         return 0.0;
     }
@@ -102,6 +152,10 @@ float celSpecular(float intensity) {
 
 void main()
 {
+    // step functions to determine object type
+    float isType1 = step(0.9, objectType) * step(objectType, 1.1); // 1 if objectType is ~1.0, 0 otherwise
+    float isType2 = step(1.9, objectType) * step(objectType, 2.1); // 1 if objectType is ~2.0, 0 otherwise
+
     // setting up textures
     vec4 texColor = texture(diffuseMap, shaderTexCoord);
     vec3 texNormal = vec3(texture(normalMap, shaderTexCoord));
@@ -115,11 +169,10 @@ void main()
     
     // Calculate raw diffuse intensity
     float rawDiffuseIntensity;
-    if (objectType != 1.0f) {
-        rawDiffuseIntensity = max(dot(normalVector, lightVector), 0.0f);
-    } else {
-        rawDiffuseIntensity = max(dot(normalize(worldSpaceNormal), lightVector), 0.0f);
-    }
+    float isNotType1 = 1.0 - step(0.9, objectType) * step(objectType, 1.1);
+    float normalDiffuse = max(dot(normalVector, lightVector), 0.0f);
+    float worldNormalDiffuse = max(dot(normalize(worldSpaceNormal), lightVector), 0.0f);
+    rawDiffuseIntensity = mix(worldNormalDiffuse, normalDiffuse, isNotType1);
     
     // Apply cel-shading to diffuse
     float diffuseIntensity = celShade(rawDiffuseIntensity);
@@ -151,6 +204,7 @@ void main()
     float theta = dot(spotLightVector, normalize(-lightDirection));
     float epsilon = cutOff - outerCutOff;
     float intensity = clamp((theta - outerCutOff) / epsilon, 0.0, 1.0) * spotIntensity / 0.5f;
+    intensity = mix(intensity, intensity * 2.4f, isType1); // increased intensity for background
 
     // Apply the spotlight effect
     spotDiffuseColor *= intensity;
@@ -160,9 +214,17 @@ void main()
     ///////////////////////////////////////////////////////////////////////////
     // zero-out the diffuse and specular components if the fragment is in shadow
     float shadowFactor = inShadow();
+    float pointLightShadowFactor = inPointLightShadow();
+    shadowFactor = mix(shadowFactor, shadowFactor * 24.0, isType1);
+    pointLightShadowFactor = mix(pointLightShadowFactor, pointLightShadowFactor * 1.48, isType1);
 
     spotDiffuseColor *= (1.0 - shadowFactor);
     spotSpecularLighting *= (1.0 - shadowFactor);
+
+    diffuseColor *= (1.0 - pointLightShadowFactor);
+    specularLighting *= (1.0 - pointLightShadowFactor);
+    spotDiffuseColor *= (1.0 - pointLightShadowFactor);
+    spotSpecularLighting *= (1.0 - pointLightShadowFactor);
     ///////////////////////////////////////////////////////////////////////////
 
     // combine the lights
@@ -176,7 +238,7 @@ void main()
     float outline = smoothstep(0.0, edgeThickness, edgeFactor);
     
     // For type 1 (background)
-    vec4 colorType1 = ((finalDiffuseColor * 0.05f + finalAmbientFactor) * 0.36f + 0.64f + spotSpecularLighting / 48.0f) * texColor * vec4(shaderColor, 1.0f);
+    vec4 colorType1 = ((finalDiffuseColor + finalAmbientFactor) * 0.64f + 0.36f + spotSpecularLighting / 48.0f) * texColor * vec4(shaderColor, 1.0f);
 
     // For type 2 (Kirby)
     vec4 colorType2 = (finalDiffuseColor * 1.0f + finalAmbientFactor / 2.0f + finalSpecularLighting / 8.0f) * texColor * vec4(shaderColor, 1.0f);
@@ -191,16 +253,12 @@ void main()
         colorType3 *= vec4(outline, outline, outline, 1.0);
     }
 
-    // Step functions to select which color to use
-    float isType1 = step(0.9, objectType) * step(objectType, 1.1); // 1 if objectType is ~1.0, 0 otherwise
-    float isType2 = step(1.9, objectType) * step(objectType, 2.1); // 1 if objectType is ~2.0, 0 otherwise
-
     // Linear interpolation - will pick one color based on the type
     vec4 finalColorTemp = colorType3 * (1.0 - isType1 - isType2) + colorType1 * isType1 + colorType2 * isType2;
 
     // trnasparency stuff
     float textureAlpha = texture(diffuseMap, shaderTexCoord).a;
-    float warpStarAlpha = 0.48f;
+    float warpStarAlpha = 0.69f + alphaShift * 0.16;
     float alpha = mix(textureAlpha, warpStarAlpha, step(-5.1f, objectType) * step(objectType, -4.9f));
 
     // // Add alpha threshold
@@ -210,4 +268,13 @@ void main()
 
     // Apply texture alpha
     finalColor = vec4(finalColorTemp.rgb, alpha); 
+
+    // DEBUGGING
+    // point light shadow map
+    // finalColor = vec4(vec3(texture(pointLightShadowMap, shaderTexCoord).r), 1.0);
+    // finalColor = vec4(vec3(pointLightShadowFactor), 1.0);
+    // finalColor = vec4((pointLightSpacePosition.xyz / pointLightSpacePosition.w) * 0.5 + 0.5, 1.0);
+    // spotlight shadow map
+    // finalColor = vec4(vec3(texture(shadowMap, shaderTexCoord).r), 1.0);
+    //finalColor = vec4(vec3(shadowFactor), 1.0);
 }
